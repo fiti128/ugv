@@ -3,74 +3,126 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:p="http://primefaces.org/ui">
-<h:head>
-</h:head>
-<h:body>
-<p:growl id="growl" showDetail="true" />
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces - ShowCase</title>
+            </f:facet>
 
-<h:form id="form">
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
 
-    <p:fieldset id="container" legend="#{msgs.heading}" toggleable="true">
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
 
-        <h:panelGroup rendered="#{chatView.loggedIn}">
 
-            <h:panelGrid columns="2" columnClasses="publicColumn,usersColumn" style="width:100%">
-                <p:outputPanel id="public" layout="block" styleClass="ui-corner-all ui-widget-content chatlogs"/>
+        <h:body>
 
-                <p:dataList id="users" var="user" value="#{chatUsers.users}" styleClass="usersList">
-                    <f:facet name="header">
-                        Users
-                    </f:facet>
+            <p:layout fullPage="true" >
 
-                    <p:commandButton title="Chat" icon="ui-icon-comment" oncomplete="pChat.show()" update=":form:privateChatContainer">
-                        <f:setPropertyActionListener value="#{user}" target="#{chatView.privateUser}" />
-                    </p:commandButton>
-                    #{user}
-                </p:dataList>
-            </h:panelGrid>
+                <p:layoutUnit id="top" position="north" size="50">
 
-            <p:separator />
+                    <p:menubar>
+                        <p:submenu label="File" icon="ui-icon-document">
+                            <p:submenu label="New" icon="ui-icon-contact">
+                                <p:menuitem value="Project" url="#" />
+                                <p:menuitem value="Other" url="#" />
+                            </p:submenu>
+                            <p:menuitem value="Open" url="#" />
+                            <p:menuitem value="Quit" url="#" />
+                        </p:submenu>
 
-            <p:inputText value="#{chatView.globalMessage}" styleClass="messageInput" />
-            <p:spacer width="5" />
-            <p:commandButton value="Send" actionListener="#{chatView.sendGlobal}" oncomplete="$('.messageInput').val('').focus()"/>
-            <p:spacer width="5" />
-            <p:commandButton value="Disconnect" actionListener="#{chatView.disconnect}" global="false" update="container" />
-        </h:panelGroup>
+                        <p:submenu label="Edit" icon="ui-icon-pencil">
+                            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
+                            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
+                        </p:submenu>
 
-        <h:panelGroup rendered="#{not chatView.loggedIn}" >
-            Username: <p:inputText value="#{chatView.username}" />
+                        <p:submenu label="Help" icon="ui-icon-help">
+                            <p:menuitem value="Contents" url="#" />
+                            <p:submenu label="Search" icon="ui-icon-search">
+                                <p:submenu label="Text">
+                                    <p:menuitem value="Workspace" url="#" />
+                                </p:submenu>
+                                <p:menuitem value="File" url="#" />
+                            </p:submenu>
+                        </p:submenu>
+                    </p:menubar>
+                </p:layoutUnit>
 
-            <p:spacer width="5" />
-            <p:commandButton value="Login" actionListener="#{chatView.login}" update="container" 
-                                icon="ui-icon-person" />
-        </h:panelGroup>
+                <p:layoutUnit id="bottom" position="south" size="60">
+                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/webapp/ui/layoutComplex.xhtml">
+                                View Page Source (layoutComplex.xhtml)
+                    </h:outputLink>
 
-    </p:fieldset>
+                    <br />
 
-    <p:dialog widgetVar="pChat" header="Private Chat" modal="true" showEffect="fade" hideEffect="fade">
-        <h:panelGrid id="privateChatContainer" columns="2" columnClasses="vtop,vtop">
-            <p:outputLabel for="pChatInput" value="To: #{chatView.privateUser}" />
-            <p:inputTextarea id="pChatInput" value="#{chatView.privateMessage}" rows="5" cols="30" />
+                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/java/org/primefaces/examples/view/LayoutBean.java">
+                                View Backing Bean Source (LayoutBean.java)
+                    </h:outputLink>
+                </p:layoutUnit>
 
-            <p:spacer />
-            <p:commandButton value="Send" actionListener="#{chatView.sendPrivate}" oncomplete="pChat.hide()" />
-        </h:panelGrid>
-    </p:dialog>
 
-</h:form>
 
-<p:socket onMessage="handleMessage" channel="/chat" autoConnect="false" widgetVar="subscriber"/>
+                <p:layoutUnit id="right" position="east" size="250" resizable="true" closable="false" collapsible="true">
+                     <p:panelGrid columns="1">     
+ 						<p:button output="#" value="Паспорт"/>
+					
+						<p:button output="#" value="Учет"/>
+						<p:button output="#" value="Перепись"/>
+						
+		         		<h:outputLabel for="name" value="Номер вагона:" style="font-weight:bold"/>
+						<p:inputText id="name" value="" />
+					</p:panelGrid>
+				
 
-<script type="text/javascript">
-    function handleMessage(data) {
-        var chatContent = $(PrimeFaces.escapeClientId('form:public'));
-        chatContent.append(data + '<br />');
+                </p:layoutUnit>
 
-        //keep scroll
-        chatContent.scrollTop(chatContent.height());
-    }
-</script>
-</h:body>
+                <p:layoutUnit id="center" position="center">
+                    <h:form>
+						<p:dataTable id="dataTable" var="car" value="#{tableBean.carsSmall}" sortMode="multiple" rows="15" paginator="true">
+					        <f:facet name="header">
+					            Ajax Sorting
+					        </f:facet>
+					
+					        <p:column sortBy="#{car.model}" headerText="Model">
+					            <h:outputText value="#{car.model}" />
+					        </p:column>
+					
+					        <p:column sortBy="#{car.year}" headerText="Year">
+					            <h:outputText value="#{car.year}" />
+					        </p:column>
+					
+					        <p:column sortBy="#{car.manufacturer}" headerText="Manufacturer">
+					            <h:outputText value="#{car.manufacturer}" />
+					        </p:column>
+					
+					        <p:column sortBy="#{car.color}" headerText="Color">
+					            <h:outputText value="#{car.color}" />
+					        </p:column>
+					    </p:dataTable>
+
+
+
+                    </h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg1" modal="true">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+            </p:dialog>
+
+        </h:body>
+
+    </f:view>
 </html>

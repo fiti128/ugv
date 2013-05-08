@@ -11,7 +11,7 @@
  		<supported-locale>en</supported-locale>
  	</locale-config>
  	<resource-bundle>
- 			<base-name>rw.obd.beans.MyBundle</base-name>
+ 			<base-name>rw.ugv.beans.MyBundle</base-name>
  		<var>msgs</var>
  	</resource-bundle>
  </application>

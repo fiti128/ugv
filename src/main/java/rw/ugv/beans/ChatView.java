@@ -1,4 +1,4 @@
-package rw.obd.beans;
+package rw.ugv.beans;
 import javax.enterprise.context.ApplicationScoped;
 
 import javax.faces.application.FacesMessage;

@@ -1,4 +1,4 @@
-package rw.obd.beans;
+package rw.ugv.beans;
 
 import java.util.ArrayList;
 import java.util.List;

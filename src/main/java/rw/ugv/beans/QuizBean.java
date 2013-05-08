@@ -1,4 +1,4 @@
-package rw.obd.beans;
+package rw.ugv.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
