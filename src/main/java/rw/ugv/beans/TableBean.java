@@ -7,7 +7,7 @@ import java.util.UUID;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import rw.ugv.domain.Car;
+import rw.ugv.persistence.domain.Car;
 @Named
 @SessionScoped
 	public class TableBean implements Serializable {

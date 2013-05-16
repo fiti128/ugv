@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="src" path="src/test/resources"/>
+	<classpathentry excluding="**/*.*" kind="src" path="src/test/java"/>
+	<classpathentry excluding="**" including="needed/rlyneed.java" kind="src" output="temp" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/WebSphere Application Server v8.0 JRE">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>

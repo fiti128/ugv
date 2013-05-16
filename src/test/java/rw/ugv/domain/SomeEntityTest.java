@@ -20,7 +20,7 @@ public class SomeEntityTest {
 		document.setDocumentDate("10-05");
 		document.setDocumentNumber("5");
 //		System.out.println(document.getTest().getStr());
-		document.setForm("VP-57");
+
 		Configuration conf = new Configuration().configure();
 		ServiceRegistry sr = new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
 		SessionFactory sf = conf.buildSessionFactory(sr);
