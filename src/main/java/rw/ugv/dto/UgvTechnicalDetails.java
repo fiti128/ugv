@@ -1,4 +1,4 @@
-package rw.ugv.persistence.dto;
+package rw.ugv.dto;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -121,6 +121,18 @@ public class UgvTechnicalDetails implements Serializable {
 	 */
 	@Column(name = "TARA_TR")
 	private String taraWagonaPoTraforetu;
+	
+	/** 
+	 *   Грузоподъемность
+	 */
+	@Column(name = "GRPD")
+	private String gruzopodjemnost;
+	
+	/** 
+	 *   Грузоподъемность по трафарету
+	 */
+	@Column(name = "GRPD_TR")
+	private String gruzopodjemnostPoTraforetu;
 	
 	/** 
 	 * 	Длина по осям автоцепок
@@ -461,8 +473,25 @@ public class UgvTechnicalDetails implements Serializable {
 	
 	// Getters and Setters... 
 	
+	
 	public String getPoligonWagona() {
 		return poligonWagona;
+	}
+
+	public String getGruzopodjemnost() {
+		return gruzopodjemnost;
+	}
+
+	public void setGruzopodjemnost(String gruzopodjemnost) {
+		this.gruzopodjemnost = gruzopodjemnost;
+	}
+
+	public String getGruzopodjemnostPoTraforetu() {
+		return gruzopodjemnostPoTraforetu;
+	}
+
+	public void setGruzopodjemnostPoTraforetu(String gruzopodjemnostPoTraforetu) {
+		this.gruzopodjemnostPoTraforetu = gruzopodjemnostPoTraforetu;
 	}
 
 	public void setPoligonWagona(String poligonWagona) {

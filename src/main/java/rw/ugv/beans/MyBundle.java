@@ -20,17 +20,13 @@ public class MyBundle extends ResourceBundle {
 	protected static final String BUNDLE_EXTENSION = "properties";
 	protected static final String CHARSET= "UTF-8";
 	public MyBundle() throws UnsupportedEncodingException, IOException{
+		
+//		Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+//    	String bundleName = "/"+BUNDLE + UNDER_SCORE + locale.toString() +"."+ BUNDLE_EXTENSION;
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		
-		Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
-    	String bundleName = "/"+BUNDLE + UNDER_SCORE + locale.toString() +"."+ BUNDLE_EXTENSION;
+		String bundleName = "/" +BUNDLE + UNDER_SCORE + "ru" + "." + BUNDLE_EXTENSION;
     	InputStream is = loader.getResource(bundleName).openStream();
-//		InputStream is = getClass().getResourceAsStream(bundleName);
-		
-//			ResourceBundle.getBundle(BUNDLE, locale, new UTF8Control());
     	ResourceBundle bundle = new PropertyResourceBundle(new InputStreamReader(is, CHARSET));
-//    	ResourceBundle bundle = getBundle("messages",locale, new UTF8Control());
-		System.err.print(bundle.getString("heading"));
     	setParent(bundle);
     	
 	}

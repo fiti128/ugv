@@ -8,8 +8,7 @@ xmlns:p="http://primefaces.org/ui">
     <f:view contentType="text/html">
         <h:head>
             <f:facet name="first">
-                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
-                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>PrimeFaces - ShowCase</title>
             </f:facet>
 
@@ -28,99 +27,15 @@ xmlns:p="http://primefaces.org/ui">
 
         <h:body>
 
-            <p:layout fullPage="true" >
-
-                <p:layoutUnit id="top" position="north" size="50">
-
-                    <p:menubar>
-                        <p:submenu label="File" icon="ui-icon-document">
-                            <p:submenu label="New" icon="ui-icon-contact">
-                                <p:menuitem value="Project" url="#" />
-                                <p:menuitem value="Other" url="#" />
-                            </p:submenu>
-                            <p:menuitem value="Open" url="#" />
-                            <p:menuitem value="Quit" url="#" />
-                        </p:submenu>
-
-                        <p:submenu label="Edit" icon="ui-icon-pencil">
-                            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w"></p:menuitem>
-                            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e"></p:menuitem>
-                        </p:submenu>
-
-                        <p:submenu label="Help" icon="ui-icon-help">
-                            <p:menuitem value="Contents" url="#" />
-                            <p:submenu label="Search" icon="ui-icon-search">
-                                <p:submenu label="Text">
-                                    <p:menuitem value="Workspace" url="#" />
-                                </p:submenu>
-                                <p:menuitem value="File" url="#" />
-                            </p:submenu>
-                        </p:submenu>
-                    </p:menubar>
-                </p:layoutUnit>
-
-                <p:layoutUnit id="bottom" position="south" size="60">
-                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/webapp/ui/layoutComplex.xhtml">
-                                View Page Source (layoutComplex.xhtml)
-                    </h:outputLink>
-
-                    <br />
-
-                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/java/org/primefaces/examples/view/LayoutBean.java">
-                                View Backing Bean Source (LayoutBean.java)
-                    </h:outputLink>
-                </p:layoutUnit>
-
-
-
-                <p:layoutUnit id="right" position="east" size="250" resizable="true" closable="false" collapsible="true">
-                     <p:panelGrid columns="1">     
+			<p:panelGrid columns="1">     
  						<p:button output="#" value="Паспорт"/>
-					
+						<p:commandButton value="#{msgs.document}" action="dialog:document" />
 						<p:button output="#" value="Учет"/>
 						<p:button output="#" value="Перепись"/>
 						
 		         		<h:outputLabel for="name" value="Номер вагона:" style="font-weight:bold"/>
 						<p:inputText id="name" value="" />
 					</p:panelGrid>
-				
-
-                </p:layoutUnit>
-
-                <p:layoutUnit id="center" position="center">
-                    <h:form>
-						<p:dataTable id="dataTable" var="car" value="#{tableBean.carsSmall}" sortMode="multiple" rows="15" paginator="true">
-					        <f:facet name="header">
-					            Ajax Sorting
-					        </f:facet>
-					
-					        <p:column sortBy="#{car.model}" headerText="Model">
-					            <h:outputText value="#{car.model}" />
-					        </p:column>
-					
-					        <p:column sortBy="#{car.year}" headerText="Year">
-					            <h:outputText value="#{car.year}" />
-					        </p:column>
-					
-					        <p:column sortBy="#{car.manufacturer}" headerText="Manufacturer">
-					            <h:outputText value="#{car.manufacturer}" />
-					        </p:column>
-					
-					        <p:column sortBy="#{car.color}" headerText="Color">
-					            <h:outputText value="#{car.color}" />
-					        </p:column>
-					    </p:dataTable>
-
-
-
-                    </h:form>
-                </p:layoutUnit>
-
-            </p:layout>
-
-            <p:dialog header="Basic Dialog" widgetVar="dlg1" modal="true">
-                <h:outputText value="Resistance to PrimeFaces is futile!" />
-            </p:dialog>
 
         </h:body>
 

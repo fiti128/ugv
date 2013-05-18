@@ -1,4 +1,4 @@
-package rw.ugv.persistence.dto;
+package rw.ugv.dto;
 
 import java.io.Serializable;
 import java.util.Calendar;

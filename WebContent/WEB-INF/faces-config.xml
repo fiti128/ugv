@@ -6,14 +6,10 @@
     http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
  <application>
- 	<locale-config>
- 		<default-locale>ru</default-locale>
- 		<supported-locale>en</supported-locale>
- 	</locale-config>
  	<resource-bundle>
  			<base-name>rw.ugv.beans.MyBundle</base-name>
  		<var>msgs</var>
  	</resource-bundle>
  </application>
-  
+ 
 </faces-config>

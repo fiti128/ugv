@@ -1,4 +1,4 @@
-package rw.ugv.persistence.dto;
+package rw.ugv.dto;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -26,6 +26,8 @@ public class UgvOperation implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 7251917582711374038L;
+
+
 
 	public UgvOperation() {
 		id = new Date();
@@ -103,6 +105,16 @@ public class UgvOperation implements Serializable {
 	public void setUgvDocId(UgvDocument ugvDocId) {
 		this.ugvDocId = ugvDocId;
 	}
-	
+	public Date getId() {
+		return id;
+	}
+
+	public void setId(Date id) {
+		this.id = id;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 }
