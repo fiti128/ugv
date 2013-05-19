@@ -10,6 +10,7 @@
  			<base-name>rw.ugv.beans.MyBundle</base-name>
  		<var>msgs</var>
  	</resource-bundle>
+
  </application>
  
 </faces-config>

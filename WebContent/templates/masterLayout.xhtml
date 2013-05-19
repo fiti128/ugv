@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    
+    	
+        <h:head>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+         	    <title>
+                		<ui:insert name="windowTitle">
+                		#{msgs.ugvTitle }
+                		</ui:insert>
+                </title>
+				<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+        </h:head>
+
+
+        <h:body>
+        	
+        	<div>
+				<ui:insert name="content"></ui:insert>
+        	</div>
+	
+			<p:dock proximity="140" itemWidth="150" maxWidth="160">
+				<p:menuitem value="Новый документ" icon="/resources/images/testimonial.png" url="#"/>
+				<p:menuitem value="Новая заявка" icon="/resources/images/Text.png" url="#"/>
+				<p:menuitem value="Новая операция" icon="/resources/images/Developer_Black_Alternate.png" url="#"/>
+				<p:menuitem value="Новые технические характеристики" icon="/resources/images/Documents2.png" url="#"/>
+				<p:menuitem value="Новый фигня" icon="/resources/images/Documents_Black.png" url="#"/>
+			</p:dock>
+			
+			<div id="footer">
+				<div class="container">
+					<p class="muted credit">
+						Янушевский С.А.
+					</p>
+				</div>
+			</div>
+        	
+        </h:body>
+
+    
+</html>

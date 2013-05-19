@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>  
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
@@ -10,20 +9,22 @@ xmlns:p="http://primefaces.org/ui">
         	<title>Введите документ</title>
         </h:head>
        <h:body>
-       <h:form>  
-                              
-		    <h:panelGrid columns="4" cellpadding="5">  
-		        <h:outputLabel for="name" value="Name:" style="font-weight:bold"/> 
-		        <p:commandButton value="#{msgs.document}" action="dialog:index" /> 
+       <ui:composition>
+       <h:form id="form9">  
+                             
+		    <h:panelGrid id="panelGrid9" columns="4" cellpadding="5">  
+		        <h:outputLabel id="label9" for="firstname" value="Name:" style="font-weight:bold"/> 
+		       		          
+		        <p:inputText id="firstname" value="#{main.firstname}" />  
 		          
-		        <p:inputText id="name" value="#{main.firstname}" />  
-		          
-		        <p:commandButton value="Submit" update="display"/>  
+		        <p:commandButton id="button9" value="Submit" update="aj-display"/>  
 		  
-		        <h:outputText value="#{main.firstname}" id="display" />  
+		        <h:outputText value="#{main.firstname}" id="aj-display" />  
+		        <h:graphicImage library="images" name="Text.png"/>
 		    </h:panelGrid>  
       
 		</h:form> 
+		</ui:composition>
         </h:body>
 
     </f:view>
