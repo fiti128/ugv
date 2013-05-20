@@ -18,40 +18,40 @@ xmlns:p="http://primefaces.org/ui">
 	          	<div class="span8">
 				    <h:panelGrid id="panelGrid9" columns="2" cellpadding="5">  
 
-    		            <h:outputLabel id="labelFormaDocumenta" for="formaDocumenta" value="#{msgs.form}" /> 
-       		            <p:inputText id="formaDocumenta" value="#{document.form}" />  
+    		            <h:outputLabel id="formaDocumentaLabel" for="formaDocumenta" value="#{msgs.form}" /> 
+       		            <p:selectOneMenu  id="formaDocumenta"  value="#{documentForm.form}">
+       		            	<f:selectItems value="#{documentForm.formList}"></f:selectItems>
+       		           		 <p:ajax update="form9"  
+                        			listener="#{documentForm.handleFormChanged}" /> 
+       		            </p:selectOneMenu>  
        		            
-       		            <h:outputLabel id="labelNomerDocumenta" for="nomerformaDocumenta" value="#{msgs.documentNumber}" /> 
-       		            <p:inputText id="nomerDocumenta" value="#{document.documentNumber}" /> 
+       		            <h:outputLabel id="documentNumberLabel" for="documentNumber" value="#{msgs.documentNumber}" rendered="#{documentForm.documentNumber}" /> 
+       		            <p:inputText id="documentNumber" value="#{document.documentNumber}" rendered="#{documentForm.documentNumber}" /> 
        		            
-       		            <h:outputLabel id="labelDataDocumenta" for="dataDocumenta" value="#{msgs.documentDate}" /> 
-       		            <p:calendar id="DataDocumenta" value="#{document.documentDate}" />  
+       		            <h:outputLabel id="dataDocumentaLabel" for="dataDocumenta" value="#{msgs.documentDate}" rendered="#{documentForm.dataDocumenta}" /> 
+       		            <p:calendar id="dataDocumenta" value="#{document.documentDate}" rendered="#{documentForm.dataDocumenta}" />  
        		            
-       		            <h:outputLabel id="labelKodPrichini" for="kodPrichini" value="#{msgs.kodPrichiniDocumenta}" /> 
-       		            <p:inputText id="KodPrichini" value="#{document.kodPrichiniDocumenta}" />
+       		            <h:outputLabel id="kodPrichiniDocumentaLabel" for="kodPrichiniDocumenta" value="#{msgs.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  /> 
+       		            <p:inputText id="kodPrichiniDocumenta" value="#{document.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  />
        		            
-       		            <h:outputLabel id="labelDepoDocumenta" for="depoDocumenta" value="#{msgs.depoDocumenta}" /> 
-       		            <p:inputText id="depoDocumenta" value="#{document.depoDocumenta}" />
+       		            <h:outputLabel id="depoDocumentaLabel" for="depoDocumenta" value="#{msgs.depoDocumenta}" rendered="#{documentForm.depoDocumenta}"  /> 
+       		            <p:inputText id="depoDocumenta" value="#{document.depoDocumenta}" rendered="#{documentForm.depoDocumenta}"  />
        		            
-       		            <h:outputLabel id="stanciaDocumentaLabel" for="stanciaDocumenta" value="#{msgs.stanciaDocumenta}" /> 
-       		            <p:inputText id="stanciaDocumenta" value="#{document.stanciaDocumenta}" />
+       		            <h:outputLabel id="stanciaDocumentaLabel" for="stanciaDocumenta" value="#{msgs.stanciaDocumenta}" rendered="#{documentForm.stanciaDocumenta}"  /> 
+       		            <p:inputText id="stanciaDocumenta" value="#{document.stanciaDocumenta}" rendered="#{documentForm.stanciaDocumenta}"  />
        		            
-       		            <h:outputLabel id="stanciaDislokaciiLabel" for="stanciaDislokacii" value="#{msgs.stanciaDislokacii}" /> 
-       		            <p:inputText id="stanciaDislokacii" value="#{document.stanciaDislokacii}" />
+       		            <h:outputLabel id="stanciaDislokaciiLabel" for="stanciaDislokacii" value="#{msgs.stanciaDislokacii}" rendered="#{documentForm.stanciaDislokacii}"  /> 
+       		            <p:inputText id="stanciaDislokacii" value="#{document.stanciaDislokacii}" rendered="#{documentForm.stanciaDislokacii}"  />
        		            
-       		            <h:outputLabel id="kodOperaciiLabel" for="kodOperacii" value="#{msgs.kodOperacii}" /> 
-       		            <p:inputText id="kodOperacii" value="#{document.kodOperacii}" />
-       		            
-       		   
-       		            
-       		            
-       		            
-       		            
-				        <h:outputText value="#{main.firstname}" id="aj-display" />  
+       		            <h:outputLabel id="kodOperaciiLabel" for="kodOperacii" value="#{msgs.kodOperacii}" rendered="#{documentForm.kodOperacii}"  /> 
+       		            <p:inputText id="kodOperacii" value="#{document.kodOperacii}" rendered="#{documentForm.kodOperacii}"  />
+       		           
+       		            <h:outputLabel id="nameLabel" for="aj-dispay" value="name:"></h:outputLabel>
+				        <h:outputText value="#{documentForm.form}" id="aj-display" />  
 				    </h:panelGrid>  
 	          	</div>
 	          	<div>
-				        <p:commandButton id="button9" value="Submit" update="aj-display"/>  
+				        <p:commandButton id="button9" value="Submit" update="aj-display" rendered="#{empty documenForm.form}"/>  
           	
 	          	</div>
 	          </div>
