@@ -18,7 +18,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
-@Embeddable
+
 @ManagedBean
 @ViewScoped
 public class DocumentForm implements Serializable {
@@ -41,7 +41,8 @@ public class DocumentForm implements Serializable {
 ////			file.delete();
 ////		}
 //	}
-	public void handleFormChanged() {
+	public void handleFormChanged(String form) {
+		this.form = form;
 		if (this.form != null && this.form != "") {
 		Map<String,Boolean> rendList = map.get(form);
 		documentNumber = rendList.get("documentNumber");
@@ -71,8 +72,8 @@ public class DocumentForm implements Serializable {
 	@Transient
 	private boolean kodOperacii;
 	
-	public DocumentForm(String form) {
-		this.form = form;
+	public DocumentForm() {
+		
 		Map<String,Boolean> vp47 = new HashMap<String,Boolean>();
 		vp47.put("documentNumber", true);
 		vp47.put("dataDocumenta", true);

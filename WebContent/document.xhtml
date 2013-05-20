@@ -19,10 +19,10 @@ xmlns:p="http://primefaces.org/ui">
 				    <h:panelGrid id="panelGrid9" columns="2" cellpadding="5">  
 
     		            <h:outputLabel id="formaDocumentaLabel" for="formaDocumenta" value="#{msgs.form}" /> 
-       		            <p:selectOneMenu  id="formaDocumenta"  value="#{documentForm.form}">
+       		            <p:selectOneMenu  id="formaDocumenta"  value="#{document.form}">
        		            	<f:selectItems value="#{documentForm.formList}"></f:selectItems>
        		           		 <p:ajax update="form9"  
-                        			listener="#{documentForm.handleFormChanged}" /> 
+                        			listener="#{documentForm.handleFormChanged(document.form)}" /> 
        		            </p:selectOneMenu>  
        		            
        		            <h:outputLabel id="documentNumberLabel" for="documentNumber" value="#{msgs.documentNumber}" rendered="#{documentForm.documentNumber}" /> 
@@ -46,12 +46,13 @@ xmlns:p="http://primefaces.org/ui">
        		            <h:outputLabel id="kodOperaciiLabel" for="kodOperacii" value="#{msgs.kodOperacii}" rendered="#{documentForm.kodOperacii}"  /> 
        		            <p:inputText id="kodOperacii" value="#{document.kodOperacii}" rendered="#{documentForm.kodOperacii}"  />
        		           
-       		            <h:outputLabel id="nameLabel" for="aj-dispay" value="name:"></h:outputLabel>
-				        <h:outputText value="#{documentForm.form}" id="aj-display" />  
+ 
 				    </h:panelGrid>  
 	          	</div>
-	          	<div>
-				        <p:commandButton id="button9" value="Submit" update="aj-display" rendered="#{empty documenForm.form}"/>  
+	          			
+	          	<div class="pagination-right">
+	          			
+				        <p:commandButton id="button9" value="Submit" rendered="#{empty documenForm.form}"/>  
           	
 	          	</div>
 	          </div>

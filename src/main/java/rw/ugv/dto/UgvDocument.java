@@ -11,13 +11,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import rw.ugv.view.DocumentForm;
 
 @ManagedBean(name="document")
 @ViewScoped
@@ -44,8 +41,8 @@ public class UgvDocument implements Serializable {
 	/**
 	 * Форма документа
 	 */
-	@Embedded
-	private DocumentForm form;
+	
+	private String form;
 	
 	/**
 	 * Номер документа
@@ -126,11 +123,10 @@ public class UgvDocument implements Serializable {
 	public void setKodOperacii(String kodOperacii) {
 		this.kodOperacii = kodOperacii;
 	}
-
-	public DocumentForm getForm() {
+	public String getForm() {
 		return form;
 	}
-	public void setForm(DocumentForm form) {
+	public void setForm(String form) {
 		this.form = form;
 	}
 	public String getDocumentNumber() {
