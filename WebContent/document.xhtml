@@ -8,24 +8,57 @@ xmlns:p="http://primefaces.org/ui">
         <h:head>
         	<title>Введите документ</title>
         </h:head>
+       
        <h:body>
-       <ui:composition>
-       <h:form id="form9">  
-                             
-		    <h:panelGrid id="panelGrid9" columns="4" cellpadding="5">  
-		        <h:outputLabel id="label9" for="firstname" value="Name:" style="font-weight:bold"/> 
-		       		          
-		        <p:inputText id="firstname" value="#{main.firstname}" />  
-		          
-		        <p:commandButton id="button9" value="Submit" update="aj-display"/>  
-		  
-		        <h:outputText value="#{main.firstname}" id="aj-display" />  
-		        <h:graphicImage library="images" name="Text.png"/>
-		    </h:panelGrid>  
-      
-		</h:form> 
-		</ui:composition>
+	       <h:form id="form9">  
+	          <div class="row-fluid">
+	          	<div class="span4">
+				        <h:graphicImage library="images" name="Text.png"/>
+	          	</div>
+	          	<div class="span8">
+				    <h:panelGrid id="panelGrid9" columns="2" cellpadding="5">  
+
+    		            <h:outputLabel id="labelFormaDocumenta" for="formaDocumenta" value="#{msgs.form}" /> 
+       		            <p:inputText id="formaDocumenta" value="#{document.form}" />  
+       		            
+       		            <h:outputLabel id="labelNomerDocumenta" for="nomerformaDocumenta" value="#{msgs.documentNumber}" /> 
+       		            <p:inputText id="nomerDocumenta" value="#{document.documentNumber}" /> 
+       		            
+       		            <h:outputLabel id="labelDataDocumenta" for="dataDocumenta" value="#{msgs.documentDate}" /> 
+       		            <p:calendar id="DataDocumenta" value="#{document.documentDate}" />  
+       		            
+       		            <h:outputLabel id="labelKodPrichini" for="kodPrichini" value="#{msgs.kodPrichiniDocumenta}" /> 
+       		            <p:inputText id="KodPrichini" value="#{document.kodPrichiniDocumenta}" />
+       		            
+       		            <h:outputLabel id="labelDepoDocumenta" for="depoDocumenta" value="#{msgs.depoDocumenta}" /> 
+       		            <p:inputText id="depoDocumenta" value="#{document.depoDocumenta}" />
+       		            
+       		            <h:outputLabel id="stanciaDocumentaLabel" for="stanciaDocumenta" value="#{msgs.stanciaDocumenta}" /> 
+       		            <p:inputText id="stanciaDocumenta" value="#{document.stanciaDocumenta}" />
+       		            
+       		            <h:outputLabel id="stanciaDislokaciiLabel" for="stanciaDislokacii" value="#{msgs.stanciaDislokacii}" /> 
+       		            <p:inputText id="stanciaDislokacii" value="#{document.stanciaDislokacii}" />
+       		            
+       		            <h:outputLabel id="kodOperaciiLabel" for="kodOperacii" value="#{msgs.kodOperacii}" /> 
+       		            <p:inputText id="kodOperacii" value="#{document.kodOperacii}" />
+       		            
+       		   
+       		            
+       		            
+       		            
+       		            
+				        <h:outputText value="#{main.firstname}" id="aj-display" />  
+				    </h:panelGrid>  
+	          	</div>
+	          	<div>
+				        <p:commandButton id="button9" value="Submit" update="aj-display"/>  
+          	
+	          	</div>
+	          </div>
+	    
+			</h:form> 
         </h:body>
+		
 
     </f:view>
 </html>

@@ -6,3 +6,4 @@
 *.ear
 .classpath
 /temp
+/.settings

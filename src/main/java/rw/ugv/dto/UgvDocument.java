@@ -5,13 +5,19 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
+@ManagedBean(name="document")
+@ViewScoped
 @Entity
 public class UgvDocument implements Serializable {
 	
@@ -20,6 +26,12 @@ public class UgvDocument implements Serializable {
 		id = new Date();
 	}
 	private static final long serialVersionUID = -6682900294284156242L;
+	
+	/**
+	 * 
+	 */
+	
+	
 	/**
 	 * Дата и время записи документа.
 	 * <p>Первичный ключ

@@ -16,29 +16,52 @@ xmlns:p="http://primefaces.org/ui">
                 </title>
 				<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
         </h:head>
-
-
+		
+		
         <h:body>
-        	
-        	<div>
+        
+        	<div class="header">
+        		<div class="row-fluid">
+        			<div class="pagination-centered">
+        				<h:outputLink value="/ugv/index.xhtml">
+        					<h:graphicImage  library="images" name="irc-logo.png"></h:graphicImage>
+        				</h:outputLink>
+        			</div>
+        			
+        			<div class="muted pagination-centered">
+	        			<h4><strong>
+	        			#{msgs.headerTitle}
+	        			</strong></h4>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="container-fluid">
 				<ui:insert name="content"></ui:insert>
         	</div>
-	
-			<p:dock proximity="140" itemWidth="150" maxWidth="160">
-				<p:menuitem value="Новый документ" icon="/resources/images/testimonial.png" url="#"/>
-				<p:menuitem value="Новая заявка" icon="/resources/images/Text.png" url="#"/>
-				<p:menuitem value="Новая операция" icon="/resources/images/Developer_Black_Alternate.png" url="#"/>
-				<p:menuitem value="Новые технические характеристики" icon="/resources/images/Documents2.png" url="#"/>
-				<p:menuitem value="Новый фигня" icon="/resources/images/Documents_Black.png" url="#"/>
-			</p:dock>
 			
-			<div id="footer">
-				<div class="container">
-					<p class="muted credit">
-						Янушевский С.А.
-					</p>
-				</div>
-			</div>
+			<ui:insert name="footer">
+				<h:form>
+					<p:dock proximity="140" itemWidth="110" maxWidth="160">
+						<p:menuitem value="#{msgs.newDoc}" icon="/resources/images/Text.png" onclick="dgd.show()"/>
+						<p:menuitem value="#{msgs.newZajavka}" icon="/resources/images/testimonial.png" url="#"/>
+						<p:menuitem value="#{msgs.newOperation}" icon="/resources/images/Developer_Black_Alternate.png" url="#"/>
+						<p:menuitem value="#{msgs.newTechDetails}" icon="/resources/images/Documents2.png" url="#"/>
+						<p:menuitem value="#{msgs.newFicha}" icon="/resources/images/Documents_Black.png" onclick="dgd.show()"/>
+					</p:dock>
+				</h:form>
+					
+					<div id="footer">
+						<div class="container">
+							<p class="muted credit">
+								#{msgs.footer}
+							</p>
+						</div>
+					</div>
+					
+					<p:dialog minimizable="true" resizable="false" height="400" id="dialogDoc" header="Document" widgetVar="dgd">
+					   <ui:include src="/document.xhtml"/>
+					</p:dialog>
+			</ui:insert>
         	
         </h:body>
 
