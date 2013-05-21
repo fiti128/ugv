@@ -14,7 +14,10 @@ xmlns:p="http://primefaces.org/ui">
                 		#{msgs.ugvTitle }
                 		</ui:insert>
                 </title>
+                <h:outputScript library="js" name="myscript.js" target="body"></h:outputScript>
 				<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+				
+				<h:outputScript library="js" name="myscript.js"/>
         </h:head>
 		
 		
@@ -43,9 +46,9 @@ xmlns:p="http://primefaces.org/ui">
 				<h:form>
 					<p:dock proximity="140" itemWidth="110" maxWidth="160">
 						<p:menuitem value="#{msgs.newDoc}" icon="/resources/images/Text.png" onclick="dgd.show()"/>
-						<p:menuitem value="#{msgs.newZajavka}" icon="/resources/images/testimonial.png" url="#"/>
-						<p:menuitem value="#{msgs.newOperation}" icon="/resources/images/Developer_Black_Alternate.png" url="#"/>
-						<p:menuitem value="#{msgs.newTechDetails}" icon="/resources/images/Documents2.png" url="#"/>
+						<p:menuitem value="#{msgs.newZajavka}" icon="/resources/images/testimonial.png" onclick="zajavka.show()"/>
+						<p:menuitem value="#{msgs.newOperation}" icon="/resources/images/Developer_Black_Alternate.png" onclick="heyho()"/>
+						<p:menuitem value="#{msgs.newTechDetails}" icon="/resources/images/Documents2.png" onclick="techDetails.show()"/>
 						<p:menuitem value="#{msgs.newFicha}" icon="/resources/images/Documents_Black.png" onclick="dgd.show()"/>
 					</p:dock>
 				</h:form>
@@ -58,11 +61,28 @@ xmlns:p="http://primefaces.org/ui">
 						</div>
 					</div>
 					
-					<p:dialog dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogDoc" header="Document" widgetVar="dgd">
+					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogDoc" header="#{msgs.newDoc}" widgetVar="dgd">
 					   <ui:include src="/document.xhtml"/>
 					</p:dialog>
+					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogZajavka" header="#{msgs.newZajavka}" widgetVar="zajavka">
+					   <ui:include src="/zajavka.xhtml"/>
+					</p:dialog>
+					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogTechDetails" header="#{msgs.newZajavka}" widgetVar="techDetails">
+					   <ui:include src="/techDetails.xhtml"/>
+					</p:dialog>
 			</ui:insert>
-        	
+			<h:outputScript>
+		    
+		       alert("hellooo");
+		   
+`			</h:outputScript>
+        	<div id="loading">
+			  <p><img src="/ugv/resources/images/382.gif" /> Please Wait</p>
+			</div>
+			
+			
+			
+			
         </h:body>
 
     

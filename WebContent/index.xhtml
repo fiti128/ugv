@@ -46,22 +46,14 @@ xmlns:p="http://primefaces.org/ui">
           
     </p:dialog> 
 	<p:tabView dynamic="true" effect="slide" widgetVar="myTab" effectDuration="fast" >
-		<p:tab title="dynamic">
-			<h:panelGrid columns="2" cellpadding="5">  
-	  
-	            <h:outputLabel for="name" value="Name:" />  
-	            <p:inputText id="name" label="name" />  
-	              
-	            <h:outputLabel for="surname" value="Surname:" />  
-	            <p:inputText id="surname" label="surname" />  
-	                  
-	            <h:outputLabel for="telephone" value="Telephone:" />  
-	            <p:inputText id="telephone" label="telephone" />  
-	      
-	        </h:panelGrid>  
-		</p:tab>
-		<p:tab title="document">
+		<p:tab title="Документ">
 		 	<ui:include src="/document.xhtml"/>
+		</p:tab>
+		<p:tab title="Заявка">
+			<ui:include src="/zajavka.xhtml"/>
+		</p:tab>
+		<p:tab title="Технические характиристики">
+			<ui:include src="/techDetails.xhtml"/>
 		</p:tab>
 		</p:tabView>
 		

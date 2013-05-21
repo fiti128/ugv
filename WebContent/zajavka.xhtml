@@ -1,0 +1,53 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+        	<title>IGNORED</title>
+        </h:head>
+       <h:body>
+       
+       <ui:composition>
+	       <h:form id="formZajavka">  
+	          <div class="row-fluid">
+	          	<div class="span4">
+				        <h:graphicImage library="images" name="testimonial.png"/>
+	          	</div>
+	          	<div class="span8">
+				    <h:panelGrid id="panelGridZajavka" columns="2" cellpadding="5">  
+
+    		            <h:outputLabel id="zajavkaFormLabel" for="zajavkaForm" value="#{msgs.zajavkaForm}" /> 
+    		            <h:inputText id="zajavkaForm" value="#{zajavka.zajavkaForm}"/>
+      		            
+       		            <h:outputLabel id="zajavkaNomerLabel" for="zajavkaNomer" value="#{msgs.zajavkaNomer}" /> 
+       		            <p:inputText id="zajavkaNomer" value="#{zajavka.zajavkaNomer}" /> 
+       		            
+       		            <h:outputLabel id="zajavkaDateLabel" for="zajavkaDate" value="#{msgs.zajavkaDate}"/> 
+       		            <p:calendar id="zajavkaDate" value="#{zajavka.zajavkaDate}" />  
+       		            
+       		            <h:outputLabel id="kodPrichiniZajavkiLabel" for="kodPrichiniZajavki" value="#{msgs.kodPrichiniZajavki}" /> 
+       		            <p:inputText id="kodPrichiniZajavki" value="#{zajavka.kodPrichiniZajavki}" />
+       		            
+       		            <h:outputLabel id="kodOperaciiLabelZajavka" for="kodOperaciiZajavka" value="#{msgs.kodOperacii}" /> 
+       		            <p:inputText id="kodOperaciiZajavka" value="#{zajavka.kodOperacii}" />
+       		           
+ 				    </h:panelGrid>  
+	          	</div>
+	          			
+	          	<div class="pagination-right">
+	          			
+				        <p:commandButton id="buttonZajavka" value="Submit" />  
+	          	</div>
+	          </div>
+			</h:form> 
+       </ui:composition>
+       
+       
+         </h:body>
+		
+
+    </f:view>
+</html>

@@ -13,12 +13,14 @@ import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @ManagedBean(name="document")
 @ViewScoped
 @Entity
+@Table(name="DOC")
 public class UgvDocument implements Serializable {
 	
 
@@ -30,7 +32,7 @@ public class UgvDocument implements Serializable {
 
 	
 	/**
-	 * Дата и время записи документа.
+	 * Дата и время записи документа. 
 	 * <p>Первичный ключ
 	 */
 	@Id

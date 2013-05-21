@@ -42,5 +42,8 @@
     <param-name>org.apache.myfaces.SERIALIZE_STATE_IN_SESSION</param-name>
     <param-value>false</param-value>
 </context-param> -->
+	<session-config>  
+	      <session-timeout>100500</session-timeout>   
+	</session-config>
 	 
 </web-app>

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@ManagedBean(name="zajavka")
+@ViewScoped
 @Entity
 @Table(name = "ZAJAV")
 public class UgvZajavka implements Serializable {
@@ -29,7 +33,7 @@ public class UgvZajavka implements Serializable {
 	 * Форма заявки
 	 */
 	@Column(name = "FORMA")
-	private String form;
+	private String zajavkaForm;
 	
 	/**
 	 * Номер заявки
@@ -50,7 +54,7 @@ public class UgvZajavka implements Serializable {
 	private String kodPrichiniZajavki;
 
 	/**
-	 * Код операции
+	 * Код операции 
 	 */
 	@Column(name = "KOP")
 	private String kodOperacii;
@@ -62,12 +66,14 @@ public class UgvZajavka implements Serializable {
 		this.id = id;
 	}
 
-	public String getForm() {
-		return form;
+
+
+	public String getZajavkaForm() {
+		return zajavkaForm;
 	}
 
-	public void setForm(String form) {
-		this.form = form;
+	public void setZajavkaForm(String zajavkaForm) {
+		this.zajavkaForm = zajavkaForm;
 	}
 
 	public String getZajavkaNomer() {

@@ -4,13 +4,19 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@ManagedBean(name="techDetails")
+@ViewScoped
 @Entity
+@Table(name="VGT")
 public class UgvTechnicalDetails implements Serializable {
 
 	private static final long serialVersionUID = 2539410460467753351L;

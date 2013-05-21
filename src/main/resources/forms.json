@@ -1,0 +1,31 @@
+{
+	"vp10":
+	{
+		"kodOperacii"			:	false,
+		"documentNumber"		:	true,
+		"depoDocumenta"			:	true,
+		"stanciaDislokacii"		:	false,
+		"stanciaDocumenta"		:	false,
+		"dataDocumenta"			:	true,
+		"kodPrichiniDocumenta"	:	true},
+	"Вп4":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	true,
+		"depoDocumenta"			:	false,
+		"stanciaDislokacii"		:	false,
+		"stanciaDocumenta"		:	false,
+		"dataDocumenta"			:	false,
+		"kodPrichiniDocumenta"	:	true},
+	"ВП-70":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	true,
+		"depoDocumenta"			:	true,
+		"stanciaDislokacii"		:	true,
+		"stanciaDocumenta"		:	true,
+		"dataDocumenta"			:	true,
+		"kodPrichiniDocumenta"	:	true}
+	  
+}
+

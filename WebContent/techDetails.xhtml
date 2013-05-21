@@ -1,0 +1,85 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+        	<title>IGNORED</title>
+        </h:head>
+       <h:body>
+       
+       <ui:composition>
+	       <h:form id="formTechDetails">  
+	          	<div class="pagination-centred">
+				        <h:graphicImage library="images" name="Documents_Black.png"/>
+	          	</div>
+	          <div class="row-fluid">
+	          	<div class="span6">
+				    <h:panelGrid id="panelGridTechDetails" columns="2" cellpadding="5">  
+
+    		            <h:outputLabel id="wagonNumberLabel" for="wagonNumber" value="#{msgs.wagonNumber}" /> 
+    		            <h:inputText id="wagonNumber" value="#{techDetails.wagonNumber}"/>
+      		            
+       		            <h:outputLabel id="kodDorozhAdministrLabel" for="kodDorozhAdministr" value="#{msgs.kodDorozhAdministr}" /> 
+       		            <p:inputText id="kodDorozhAdministr" value="#{techDetails.kodDorozhAdministr}" /> 
+       		            
+       		            <h:outputLabel id="kodSobstvLabel" for="kodSobstv" value="#{msgs.kodSobstv}"/> 
+       		            <p:calendar id="kodSobstv" value="#{techDetails.kodSobstv}" />  
+       		            
+       		            <h:outputLabel id="dorogaPripiskiLabel" for="dorogaPripiski" value="#{msgs.dorogaPripiski}" /> 
+       		            <p:inputText id="dorogaPripiski" value="#{techDetails.dorogaPripiski}" />
+       		            
+       		            <h:outputLabel id="stanciaPripiskiLabel" for="stanciaPripiski" value="#{msgs.stanciaPripiski}" /> 
+       		            <p:inputText id="stanciaPripiski" value="#{techDetails.stanciaPripiski}" />
+       		                   		            
+       		            <h:outputLabel id="poligonWagonaLabel" for="poligonWagona" value="#{msgs.poligonWagona}" /> 
+       		            <p:inputText id="poligonWagona" value="#{techDetails.poligonWagona}" />
+       		                   		            
+    		           
+ 				    </h:panelGrid>  
+	          	</div>
+	          	<div class="span6">
+	          		<h:panelGrid id="panelGridTechDetailsRight" columns="2" cellpadding="5">
+	          		
+	          			<h:outputLabel id="kodZavodaLabel" for="kodZavoda" value="#{msgs.kodZavoda}" /> 
+       		            <p:inputText id="kodZavoda" value="#{techDetails.kodZavoda}" />
+       		                   		            
+       		            <h:outputLabel id="zavNomerWagonaLabel" for="zavNomerWagona" value="#{msgs.zavNomerWagona}" /> 
+       		            <p:inputText id="zavNomerWagona" value="#{techDetails.zavNomerWagona}" />
+       		                   		            
+       		            <h:outputLabel id="tipWagonaLabel" for="tipWagona" value="#{msgs.tipWagona}" /> 
+       		            <p:inputText id="tipWagona" value="#{techDetails.tipWagona}" />
+       		                   		            
+       		            <h:outputLabel id="tipWagonaIzDocLabel" for="tipWagonaIzDoc" value="#{msgs.tipWagonaIzDoc}" /> 
+       		            <p:inputText id="tipWagonaIzDoc" value="#{techDetails.tipWagonaIzDoc}" />
+       		                   		            
+       		            <h:outputLabel id="idModeliWagonaLabel" for="idModeliWagona" value="#{msgs.idModeliWagona}" /> 
+       		            <p:inputText id="idModeliWagona" value="#{techDetails.idModeliWagona}" />
+       		                   		            
+       		            <h:outputLabel id="modelWagonaIzPasportaLabel" for="modelWagonaIzPasporta" value="#{msgs.modelWagonaIzPasporta}" /> 
+       		            <p:inputText id="modelWagonaIzPasporta" value="#{techDetails.modelWagonaIzPasporta}" />
+       		                   		            
+       		            <h:outputLabel id="modelWagonaIzSpravochnikaLabel" for="modelWagonaIzSpravochnika" value="#{msgs.modelWagonaIzSpravochnika}" /> 
+       		            <p:inputText id="modelWagonaIzSpravochnika" value="#{techDetails.modelWagonaIzSpravochnika}" />
+       		                   		            
+       		            <h:outputLabel id="techUsloviaLabel" for="dorogaPripiski" value="#{msgs.techUslovia}" /> 
+       		            <p:inputText id="techUslovia" value="#{techDetails.techUslovia}" />
+	          		</h:panelGrid>
+	          	</div>
+	          			
+	          </div>
+	          	<div class="pagination-right">
+	          			
+				        <p:commandButton id="buttonTechDetails" value="Submit" />  
+	          	</div>
+			</h:form> 
+       </ui:composition>
+       
+       
+         </h:body>
+		
+
+    </f:view>
+</html>
