@@ -15,7 +15,7 @@ import javax.persistence.criteria.Root;
 
 import rw.ugv.dao.GenericDAO;
 
-@Named
+
 public abstract class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<T,PK> {
 	
 	@PersistenceContext(unitName = "sample",type = PersistenceContextType.EXTENDED)

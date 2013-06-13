@@ -5,11 +5,9 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +18,7 @@ import javax.persistence.TemporalType;
 @ManagedBean(name="document")
 @ViewScoped
 @Entity
-@Table(name="DOC")
+@Table(name="DOC", schema="UGVSCH")
 public class UgvDocument implements Serializable {
 	
 
@@ -43,7 +41,7 @@ public class UgvDocument implements Serializable {
 	/**
 	 * Форма документа
 	 */
-	
+	@Column(name = "FORM")
 	private String form;
 	
 	/**

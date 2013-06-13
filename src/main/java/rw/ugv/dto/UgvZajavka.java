@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Column;
@@ -16,7 +17,7 @@ import javax.persistence.TemporalType;
 @ManagedBean(name="zajavka")
 @ViewScoped
 @Entity
-@Table(name = "ZAJAV")
+@Table(name = "ZAJAV", schema="UGVSCH")
 public class UgvZajavka implements Serializable {
 
 	private static final long serialVersionUID = 8111608703615462876L;

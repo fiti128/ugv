@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Column;
@@ -12,11 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
 
 @ManagedBean(name="techDetails")
 @ViewScoped
 @Entity
-@Table(name="VGT")
+@Table(name="VGT", schema="UGVSCH")
 public class UgvTechnicalDetails implements Serializable {
 
 	private static final long serialVersionUID = 2539410460467753351L;
@@ -149,8 +151,9 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 *  	Габарит
 	 */
+	@Max(value=1)
 	@Column(name = "GABAR")
-	private char gabarit;
+	private String gabarit;
 	
 	/** 
 	 * 	Материал обшивки кузова
@@ -161,38 +164,44 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Тип воздухораспределителя
 	 */
+	@Max(value=1)
 	@Column(name = "TIPRASPR")
-	private char tipVozduharaspr;
+	private String tipVozduharaspr;
 	
 	/** 
 	 * 	Авторегулятор рычажной передачи
 	 */
+	@Max(value=1)
 	@Column(name = "ARRP")
-	private char avtoregulRychazchPeredachi;
+	private String avtoregulRychazchPeredachi;
 	
 	/** 
 	 * 	Рычажная передача
 	 */
+	@Max(value=1)
 	@Column(name = "RP")
-	private char ruchazchnPeredacha;
+	private String ruchazchnPeredacha;
 		
 	/** 
 	 * 	Авторежим
 	 */
+	@Max(value=1)
 	@Column(name = "AVREJ")
-	private char avtorezchim;
+	private String avtorezchim;
 	
 	/** 
 	 * 	Ручной тормоз
 	 */
+	@Max(value=1)
 	@Column(name = "RUTOR")
-	private char ruchnTormoz;
+	private String ruchnTormoz;
 	
 	/** 
 	 * 	Тип автосцепки
 	 */
+	@Max(value=1)
 	@Column(name = "TIPAVSC")
-	private char tipAvtoscepki;
+	private String tipAvtoscepki;
 	
 	/** 
 	 * 	Тип поглащающего аппарата
@@ -203,8 +212,9 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Возможность постановки буферов
 	 */
+	@Max(value=1)
 	@Column(name = "PRBUF")
-	private char vozmozchnPostanovkiBuferov;
+	private String vozmozchnPostanovkiBuferov;
 	
 	/** 
 	 * 	Модель тележек
@@ -215,8 +225,9 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Подпольные усиливающие балочки
 	 */
+	@Max(value=1)
 	@Column(name = "PRUSBAL")
-	private char podpolUsilBalki;
+	private String podpolUsilBalki;
 	
 	/** 
 	 * 	Калибровка котла цистерны
@@ -227,20 +238,23 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Наличие сливного прибора
 	 */
+	@Max(value=1)
 	@Column(name = "PRSLIVPR")
-	private char slivnPribor;
+	private String slivnPribor;
 	
 	/** 
 	 * 	Наличие рамы
 	 */
+	@Max(value=1)
 	@Column(name = "PRRAM")
-	private char rama;
+	private String rama;
 	
 	/** 
 	 * 	Конструкция котла
 	 */
+	@Max(value=1)
 	@Column(name = "KD_KOTL")
-	private char konstrKotla;
+	private String konstrKotla;
 	
 	/** 
 	 * 	Код СМГС1
@@ -255,10 +269,11 @@ public class UgvTechnicalDetails implements Serializable {
 	private String kodSMGS2;
 	
 	/** 
-	 * 	Продлен ли срок службы
+	 * 	Продлен ли срок службы 
 	 */
+	@Max(value=1)
 	@Column(name = "PRPRODSR")
-	private char prodlenSrokSlyzchbiWagona;
+	private String prodlenSrokSlyzchbiWagona;
 	
 	
 	/** 
@@ -282,8 +297,9 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Переведен на ремонт по пробегу
 	 */
+	@Max(value=1)
 	@Column(name = "PR_REM")
-	private char perevedenNaRemontPoProbegu;
+	private String perevedenNaRemontPoProbegu;
 	
 	/**
 	 * 	Дата перевода на ремонт по пробегу
@@ -318,7 +334,7 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Дата последнего капитального ремонта
 	 */
-	@Column(name = "D_REMIK")
+	@Column(name = "D_REMK")
 	private Calendar dataKapitalnogoPoslRemonta;
 	
 	/** 
@@ -408,8 +424,9 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Причина перенумерования
 	 */
+	@Max(value=1)
 	@Column(name = "KD_PRIPEREN")
-	private char kodPerenumerovania;
+	private String kodPerenumerovania;
 	
 	/** 
 	 * 	Дата изъятия вагона из Единого парка
@@ -420,7 +437,7 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Код организации-арендатора вагона
 	 */
-	@Column(name = "KD_AREND")
+	@Column(name = "K_AREND")
 	private String kodArendatoraWagona;
 	
 	/** 
@@ -456,48 +473,85 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Текущий вид собственности вагона
 	 */
+	@Max(value=1)
 	@Column(name = "VID_SOB_TEK")
-	private char vidSobstvWagonaTek;
+	private String vidSobstvWagonaTek;
 		
 	/** 
 	 * 	Первичный вид собственности вагона
 	 */
+	@Max(value=1)
 	@Column(name = "VID_SOB_PR")
-	private char vidSobstvWagonaPervichnij;
+	private String vidSobstvWagonaPervichnij;
 	
 	/** 
 	 * 	Признак нахождения вагона в Едином парке
 	 */
+	@Max(value=1)
 	@Column(name = "PR_EDP")
-	private char priznakNachozchdeniaWagonaVEdinomParke;
+	private String priznakNachozchdeniaWagonaVEdinomParke;
 	
 	/** 
 	 * 	Количество непрошедших переписей
 	 */
+	@Max(value=1)
 	@Column(name = "KOL_NETPER")
-	private char kolNeproshedshichZapisej;
+	private String kolNeproshedshichZapisej;
+
 	
-	// Getters and Setters... 
+	// Getters and Setters...
 	
 	
+	public Date getId() {
+		return id;
+	}
+
+	public void setId(Date id) {
+		this.id = id;
+	}
+
+	public String getWagonNumber() {
+		return wagonNumber;
+	}
+
+	public void setWagonNumber(String wagonNumber) {
+		this.wagonNumber = wagonNumber;
+	}
+
+	public String getKodDorozhAdministr() {
+		return kodDorozhAdministr;
+	}
+
+	public void setKodDorozhAdministr(String kodDorozhAdministr) {
+		this.kodDorozhAdministr = kodDorozhAdministr;
+	}
+
+	public String getKodSobstv() {
+		return kodSobstv;
+	}
+
+	public void setKodSobstv(String kodSobstv) {
+		this.kodSobstv = kodSobstv;
+	}
+
+	public String getDorogaPripiski() {
+		return dorogaPripiski;
+	}
+
+	public void setDorogaPripiski(String dorogaPripiski) {
+		this.dorogaPripiski = dorogaPripiski;
+	}
+
+	public String getStanciaPripiski() {
+		return stanciaPripiski;
+	}
+
+	public void setStanciaPripiski(String stanciaPripiski) {
+		this.stanciaPripiski = stanciaPripiski;
+	}
+
 	public String getPoligonWagona() {
 		return poligonWagona;
-	}
-
-	public String getGruzopodjemnost() {
-		return gruzopodjemnost;
-	}
-
-	public void setGruzopodjemnost(String gruzopodjemnost) {
-		this.gruzopodjemnost = gruzopodjemnost;
-	}
-
-	public String getGruzopodjemnostPoTraforetu() {
-		return gruzopodjemnostPoTraforetu;
-	}
-
-	public void setGruzopodjemnostPoTraforetu(String gruzopodjemnostPoTraforetu) {
-		this.gruzopodjemnostPoTraforetu = gruzopodjemnostPoTraforetu;
 	}
 
 	public void setPoligonWagona(String poligonWagona) {
@@ -584,6 +638,22 @@ public class UgvTechnicalDetails implements Serializable {
 		this.taraWagonaPoTraforetu = taraWagonaPoTraforetu;
 	}
 
+	public String getGruzopodjemnost() {
+		return gruzopodjemnost;
+	}
+
+	public void setGruzopodjemnost(String gruzopodjemnost) {
+		this.gruzopodjemnost = gruzopodjemnost;
+	}
+
+	public String getGruzopodjemnostPoTraforetu() {
+		return gruzopodjemnostPoTraforetu;
+	}
+
+	public void setGruzopodjemnostPoTraforetu(String gruzopodjemnostPoTraforetu) {
+		this.gruzopodjemnostPoTraforetu = gruzopodjemnostPoTraforetu;
+	}
+
 	public String getDlinaPoOsiamAvtocepok() {
 		return dlinaPoOsiamAvtocepok;
 	}
@@ -592,11 +662,11 @@ public class UgvTechnicalDetails implements Serializable {
 		this.dlinaPoOsiamAvtocepok = dlinaPoOsiamAvtocepok;
 	}
 
-	public char getGabarit() {
+	public String getGabarit() {
 		return gabarit;
 	}
 
-	public void setGabarit(char gabarit) {
+	public void setGabarit(String gabarit) {
 		this.gabarit = gabarit;
 	}
 
@@ -608,51 +678,51 @@ public class UgvTechnicalDetails implements Serializable {
 		this.materialObshivkiKuzova = materialObshivkiKuzova;
 	}
 
-	public char getTipVozduharaspr() {
+	public String getTipVozduharaspr() {
 		return tipVozduharaspr;
 	}
 
-	public void setTipVozduharaspr(char tipVozduharaspr) {
+	public void setTipVozduharaspr(String tipVozduharaspr) {
 		this.tipVozduharaspr = tipVozduharaspr;
 	}
 
-	public char getAvtoregulRychazchPeredachi() {
+	public String getAvtoregulRychazchPeredachi() {
 		return avtoregulRychazchPeredachi;
 	}
 
-	public void setAvtoregulRychazchPeredachi(char avtoregulRychazchPeredachi) {
+	public void setAvtoregulRychazchPeredachi(String avtoregulRychazchPeredachi) {
 		this.avtoregulRychazchPeredachi = avtoregulRychazchPeredachi;
 	}
 
-	public char getRuchazchnPeredacha() {
+	public String getRuchazchnPeredacha() {
 		return ruchazchnPeredacha;
 	}
 
-	public void setRuchazchnPeredacha(char ruchazchnPeredacha) {
+	public void setRuchazchnPeredacha(String ruchazchnPeredacha) {
 		this.ruchazchnPeredacha = ruchazchnPeredacha;
 	}
 
-	public char getAvtorezchim() {
+	public String getAvtorezchim() {
 		return avtorezchim;
 	}
 
-	public void setAvtorezchim(char avtorezchim) {
+	public void setAvtorezchim(String avtorezchim) {
 		this.avtorezchim = avtorezchim;
 	}
 
-	public char getRuchnTormoz() {
+	public String getRuchnTormoz() {
 		return ruchnTormoz;
 	}
 
-	public void setRuchnTormoz(char ruchnTormoz) {
+	public void setRuchnTormoz(String ruchnTormoz) {
 		this.ruchnTormoz = ruchnTormoz;
 	}
 
-	public char getTipAvtoscepki() {
+	public String getTipAvtoscepki() {
 		return tipAvtoscepki;
 	}
 
-	public void setTipAvtoscepki(char tipAvtoscepki) {
+	public void setTipAvtoscepki(String tipAvtoscepki) {
 		this.tipAvtoscepki = tipAvtoscepki;
 	}
 
@@ -664,11 +734,11 @@ public class UgvTechnicalDetails implements Serializable {
 		this.tipPoglAparata = tipPoglAparata;
 	}
 
-	public char getVozmozchnPostanovkiBuferov() {
+	public String getVozmozchnPostanovkiBuferov() {
 		return vozmozchnPostanovkiBuferov;
 	}
 
-	public void setVozmozchnPostanovkiBuferov(char vozmozchnPostanovkiBuferov) {
+	public void setVozmozchnPostanovkiBuferov(String vozmozchnPostanovkiBuferov) {
 		this.vozmozchnPostanovkiBuferov = vozmozchnPostanovkiBuferov;
 	}
 
@@ -680,11 +750,11 @@ public class UgvTechnicalDetails implements Serializable {
 		this.modelTelezchek = modelTelezchek;
 	}
 
-	public char getPodpolUsilBalki() {
+	public String getPodpolUsilBalki() {
 		return podpolUsilBalki;
 	}
 
-	public void setPodpolUsilBalki(char podpolUsilBalki) {
+	public void setPodpolUsilBalki(String podpolUsilBalki) {
 		this.podpolUsilBalki = podpolUsilBalki;
 	}
 
@@ -696,27 +766,27 @@ public class UgvTechnicalDetails implements Serializable {
 		this.kalibrovkaKotla = kalibrovkaKotla;
 	}
 
-	public char getSlivnPribor() {
+	public String getSlivnPribor() {
 		return slivnPribor;
 	}
 
-	public void setSlivnPribor(char slivnPribor) {
+	public void setSlivnPribor(String slivnPribor) {
 		this.slivnPribor = slivnPribor;
 	}
 
-	public char getRama() {
+	public String getRama() {
 		return rama;
 	}
 
-	public void setRama(char rama) {
+	public void setRama(String rama) {
 		this.rama = rama;
 	}
 
-	public char getKonstrKotla() {
+	public String getKonstrKotla() {
 		return konstrKotla;
 	}
 
-	public void setKonstrKotla(char konstrKotla) {
+	public void setKonstrKotla(String konstrKotla) {
 		this.konstrKotla = konstrKotla;
 	}
 
@@ -736,11 +806,11 @@ public class UgvTechnicalDetails implements Serializable {
 		this.kodSMGS2 = kodSMGS2;
 	}
 
-	public char getProdlenSrokSlyzchbiWagona() {
+	public String getProdlenSrokSlyzchbiWagona() {
 		return prodlenSrokSlyzchbiWagona;
 	}
 
-	public void setProdlenSrokSlyzchbiWagona(char prodlenSrokSlyzchbiWagona) {
+	public void setProdlenSrokSlyzchbiWagona(String prodlenSrokSlyzchbiWagona) {
 		this.prodlenSrokSlyzchbiWagona = prodlenSrokSlyzchbiWagona;
 	}
 
@@ -770,11 +840,11 @@ public class UgvTechnicalDetails implements Serializable {
 		this.dataDocumentaProdlenSrokSlyzchbi = dataDocumentaProdlenSrokSlyzchbi;
 	}
 
-	public char getPerevedenNaRemontPoProbegu() {
+	public String getPerevedenNaRemontPoProbegu() {
 		return perevedenNaRemontPoProbegu;
 	}
 
-	public void setPerevedenNaRemontPoProbegu(char perevedenNaRemontPoProbegu) {
+	public void setPerevedenNaRemontPoProbegu(String perevedenNaRemontPoProbegu) {
 		this.perevedenNaRemontPoProbegu = perevedenNaRemontPoProbegu;
 	}
 
@@ -944,11 +1014,11 @@ public class UgvTechnicalDetails implements Serializable {
 		this.nomerWagonaStarij = nomerWagonaStarij;
 	}
 
-	public char getKodPerenumerovania() {
+	public String getKodPerenumerovania() {
 		return kodPerenumerovania;
 	}
 
-	public void setKodPerenumerovania(char kodPerenumerovania) {
+	public void setKodPerenumerovania(String kodPerenumerovania) {
 		this.kodPerenumerovania = kodPerenumerovania;
 	}
 
@@ -1009,92 +1079,40 @@ public class UgvTechnicalDetails implements Serializable {
 		this.uslKodBalansa = uslKodBalansa;
 	}
 
-	public char getVidSobstvWagonaTek() {
+	public String getVidSobstvWagonaTek() {
 		return vidSobstvWagonaTek;
 	}
 
-	public void setVidSobstvWagonaTek(char vidSobstvWagonaTek) {
+	public void setVidSobstvWagonaTek(String vidSobstvWagonaTek) {
 		this.vidSobstvWagonaTek = vidSobstvWagonaTek;
 	}
 
-	public char getVidSobstvWagonaPervichnij() {
+	public String getVidSobstvWagonaPervichnij() {
 		return vidSobstvWagonaPervichnij;
 	}
 
-	public void setVidSobstvWagonaPervichnij(char vidSobstvWagonaPervichnij) {
+	public void setVidSobstvWagonaPervichnij(String vidSobstvWagonaPervichnij) {
 		this.vidSobstvWagonaPervichnij = vidSobstvWagonaPervichnij;
 	}
 
-	public char getPriznakNachozchdeniaWagonaVEdinomParke() {
+	public String getPriznakNachozchdeniaWagonaVEdinomParke() {
 		return priznakNachozchdeniaWagonaVEdinomParke;
 	}
 
 	public void setPriznakNachozchdeniaWagonaVEdinomParke(
-			char priznakNachozchdeniaWagonaVEdinomParke) {
+			String priznakNachozchdeniaWagonaVEdinomParke) {
 		this.priznakNachozchdeniaWagonaVEdinomParke = priznakNachozchdeniaWagonaVEdinomParke;
 	}
 
-	public char getKolNeproshedshichZapisej() {
+	public String getKolNeproshedshichZapisej() {
 		return kolNeproshedshichZapisej;
 	}
 
-	public void setKolNeproshedshichZapisej(char kolNeproshedshichZapisej) {
+	public void setKolNeproshedshichZapisej(String kolNeproshedshichZapisej) {
 		this.kolNeproshedshichZapisej = kolNeproshedshichZapisej;
 	}
-
-	public Date getCreatingTime() {
-		return id;
-	}
-
-	public void setCreatingTime(Date creatingTime) {
-		this.id = creatingTime;
-	}
-
-	public String getWagonNumber() {
-		return wagonNumber;
-	}
-
-	public void setWagonNumber(String wagonNumber) {
-		this.wagonNumber = wagonNumber;
-	}
-
-	public String getKodDorozhAdministr() {
-		return kodDorozhAdministr;
-	}
-
-	public void setKodDorozhAdministr(String kodDorozhAdministr) {
-		this.kodDorozhAdministr = kodDorozhAdministr;
-	}
-
-	public String getKodSobstv() {
-		return kodSobstv;
-	}
-
-	public void setKodSobstv(String kodSobstv) {
-		this.kodSobstv = kodSobstv;
-	}
-
-	public String getDorogaPripiski() {
-		return dorogaPripiski;
-	}
-
-	public void setDorogaPripiski(String dorogaPripiski) {
-		this.dorogaPripiski = dorogaPripiski;
-	}
-
-	public String getStanciaPripiski() {
-		return stanciaPripiski;
-	}
-
-	public void setStanciaPripiski(String stanciaPripiski) {
-		this.stanciaPripiski = stanciaPripiski;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 
-	
+
 	
 }

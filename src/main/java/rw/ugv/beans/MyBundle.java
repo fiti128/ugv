@@ -34,7 +34,6 @@ public class MyBundle extends ResourceBundle {
 	@Override
     protected Object handleGetObject(String key) {
     	Object obj = parent.getObject(key);
-    	System.err.println("Key = " + key + "Object = " + obj.toString());
         return obj;
     }
 
@@ -42,9 +41,6 @@ public class MyBundle extends ResourceBundle {
 	@Override
     public Enumeration<String> getKeys() {
 		Enumeration<String> list = parent.getKeys();
-		while(list.hasMoreElements()) {
-			System.err.print(list.nextElement() + ",");
-		}
         return parent.getKeys();
     }
 

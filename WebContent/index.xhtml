@@ -45,18 +45,38 @@ xmlns:p="http://primefaces.org/ui">
   		</div>
           
     </p:dialog> 
-	<p:tabView dynamic="true" effect="slide" widgetVar="myTab" effectDuration="fast" >
-		<p:tab title="Документ">
-		 	<ui:include src="/document.xhtml"/>
-		</p:tab>
-		<p:tab title="Заявка">
-			<ui:include src="/zajavka.xhtml"/>
-		</p:tab>
-		<p:tab title="Технические характиристики">
-			<ui:include src="/techDetails.xhtml"/>
-		</p:tab>
-		</p:tabView>
-		
+    <ui:remove>
+		<p:wizard >
+		</p:wizard>
+    </ui:remove>
+	<h:form>
+    <p:tabView dynamic="true"  effect="slide" widgetVar="myTab" effectDuration="fast">
+			<p:tab title="Заявка">
+				<ui:include src="/zajavka.xhtml"/>
+			</p:tab>
+			<p:tab title="Документ">
+			 	<ui:include src="/document.xhtml"/>
+			</p:tab>
+			<p:tab title="Технические характиристики">
+				<ui:include src="/techDetails.xhtml"/>
+			</p:tab>
+			<p:tab title="Список операций">
+			
+				 <p:dataTable id="lazyOperations" value="#{operationMB.operations}" var="operation" 
+				 	paginator="true" rows="10" lazy="true"
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				 	rowsPerPageTemplate="5,10,15" >
+
+	                <p:column>
+	                    <f:facet name="header">Признак состояния записи</f:facet>
+	                    <h:outputText value="#{operation.priznakZapisi}" />
+	                </p:column>
+				 	
+				 </p:dataTable>
+			</p:tab>
+    </p:tabView>
+		<p:remoteCommand onstart="heyho"></p:remoteCommand>
+	</h:form>
 		</ui:define>
 	</ui:composition>
 	

@@ -1,23 +1,17 @@
 package rw.ugv.view;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
 import org.codehaus.jackson.JsonParseException;
@@ -33,20 +27,11 @@ public class DocumentForm implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1203352608230766258L;
-	public Map<String,Map<String,Boolean>> map = new HashMap<String,Map<String,Boolean>> ();
+	private Map<String,Map<String,Boolean>> map = new HashMap<String,Map<String,Boolean>> ();
 	
 	@Column(name = "FORM")
 	private String form;
-//	public static void main(String[] args) throws FileNotFoundException, IOException {
-//		DocumentForm df = new DocumentForm();
-//		File file = new File("file.txt");
-//		System.out.println(file.getAbsolutePath());
-//		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-//		oos.writeObject(df);
-////		if (file.isFile()) {
-////			file.delete();
-////		}
-//	}
+
 	public void handleFormChanged(String form) {
 		this.form = form;
 		if (this.form != null && this.form != "") {
@@ -77,60 +62,36 @@ public class DocumentForm implements Serializable {
 	private boolean stanciaDislokacii;
 	@Transient
 	private boolean kodOperacii;
-//	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
-//		DocumentForm df = new DocumentForm();
-//		df.handleFormChanged("Вп4");
-//		System.out.println(df.isKodOperacii());
-//		Map<String,Boolean> vp10Map = df.map.get("vp10");
-//		Set<String> keys = vp10Map.keySet();
-//		for (String string : keys) {
-//			System.out.println(string);
-//		}
-//		boolean kodOperaciiCheck = vp10Map.get("kodOperacii");
-//		
-//		System.out.println(df.isDocumentNumber());
-//	}
 	
-	
-	public DocumentForm() throws JsonParseException, JsonMappingException, IOException {
+	@SuppressWarnings("unchecked")
+	@PostConstruct
+	protected void init()  {
 		ObjectMapper mapper = new ObjectMapper();
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		URL url = loader.getResource("forms.json");
-		@SuppressWarnings("unchecked")
-		Map<String,Map<String,Boolean>> jsonMap = mapper.readValue(url, Map.class);
-		map = jsonMap;
-//		Map<String,Boolean> vp47 = new HashMap<String,Boolean>();
-//		vp47.put("documentNumber", true);
-//		vp47.put("dataDocumenta", true);
-//		vp47.put("kodPrichiniDocumenta", true);
-//		vp47.put("depoDocumenta", true);
-//		vp47.put("stanciaDocumenta", true);
-//		vp47.put("stanciaDislokacii", true);
-//		vp47.put("kodOperacii", true);
-//		
-//		Map<String,Boolean> vp4 = new HashMap<String,Boolean>();
-//		vp4.put("documentNumber", false);
-//		vp4.put("dataDocumenta", false);
-//		vp4.put("kodPrichiniDocumenta", false);
-//		vp4.put("depoDocumenta", true);
-//		vp4.put("stanciaDocumenta", true);
-//		vp4.put("stanciaDislokacii", true);
-//		vp4.put("kodOperacii", true);
-//		
-//		Map<String,Boolean> vp10 = new HashMap<String,Boolean>();
-//		vp10.put("documentNumber", true);
-//		vp10.put("dataDocumenta", true);
-//		vp10.put("kodPrichiniDocumenta", true);
-//		vp10.put("depoDocumenta", true);
-//		vp10.put("stanciaDocumenta", false);
-//		vp10.put("stanciaDislokacii", false);
-//		vp10.put("kodOperacii", false);
-//
-//		map.put("vp47", vp47);
-//		map.put("vp4", vp4);
-//		map.put("vp10", vp10);
-//		mapper.writeValue(new File("form2.json"), map);
-		
+
+		Map<String, Map<String, Boolean>> jsonMap;
+		try {
+			jsonMap = (Map<String, Map<String, Boolean>>)mapper.readValue(url, Map.class);
+			map = jsonMap;
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public DocumentForm()  {
+	}
+	
+	
+	public Map<String, Map<String, Boolean>> getMap() {
+		return map;
+	}
+	public void setMap(Map<String, Map<String, Boolean>> map) {
+		this.map = map;
 	}
 	public boolean isDocumentNumber() {
 		return documentNumber;

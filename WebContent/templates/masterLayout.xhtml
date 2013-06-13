@@ -16,32 +16,40 @@ xmlns:p="http://primefaces.org/ui">
                 </title>
                 <h:outputScript library="js" name="myscript.js" target="body"></h:outputScript>
 				<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
-				
+				<h:outputScript library="primefaces" name="jquery/jquery.js" />
 				<h:outputScript library="js" name="myscript.js"/>
         </h:head>
 		
 		
         <h:body>
-        
+        <div class="wrapper">
+    		<div class="container-fluid">
         	<div class="header">
         		<div class="row-fluid">
-        			<div class="pagination-centered">
+        			<div class="span4 pagination-centered">
         				<h:outputLink value="/ugv/index.xhtml">
         					<h:graphicImage  library="images" name="irc-logo.png"></h:graphicImage>
         				</h:outputLink>
         			</div>
         			
-        			<div class="muted pagination-centered">
-	        			<h4><strong>
+        			<div class="span8 muted pagination-centered">
+	        			<h3><strong>
 	        			#{msgs.headerTitle}
-	        			</strong></h4>
+	        			</strong></h3>
         			</div>
         		</div>
         	</div>
-        	<div class="container-fluid">
+        	
 				<ui:insert name="content"></ui:insert>
-        	</div>
+        	
 			
+			
+	</div>
+		</div>
+			<div class="footer">
+						<div class="container-fluid">
+							
+							
 			<ui:insert name="footer">
 				<h:form>
 					<p:dock proximity="140" itemWidth="110" maxWidth="160">
@@ -53,13 +61,7 @@ xmlns:p="http://primefaces.org/ui">
 					</p:dock>
 				</h:form>
 					
-					<div id="footer">
-						<div class="container">
-							<p class="muted credit">
-								#{msgs.footer}
-							</p>
-						</div>
-					</div>
+					
 					
 					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogDoc" header="#{msgs.newDoc}" widgetVar="dgd">
 					   <ui:include src="/document.xhtml"/>
@@ -71,17 +73,25 @@ xmlns:p="http://primefaces.org/ui">
 					   <ui:include src="/techDetails.xhtml"/>
 					</p:dialog>
 			</ui:insert>
-			<h:outputScript>
-		    
-		       alert("hellooo");
-		   
-`			</h:outputScript>
-        	<div id="loading">
-			  <p><img src="/ugv/resources/images/382.gif" /> Please Wait</p>
+
+        	<div id="loading" class="pull-right navbar-fixed-bottom">
+        		<div class="pagination-right">
+			  <p><img src="/ugv/resources/images/382.gif" /> Пожалуйста подождите</p>
+        		</div>
 			</div>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<p class="muted credit">
+								#{msgs.footer}
+							</p>
+						</div>
 			
-			
-			
+			</div>
 			
         </h:body>
 
