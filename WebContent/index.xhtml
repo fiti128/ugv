@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+
+                <title>IGNORED</title>
+
+        </h:head>
+
+
+        <h:body>
+		<ui:composition template="templates/masterLayout.xhtml">
+			<ui:define name="content">
+			<!--
+					<p:panelGrid columns="1">     
+ 						<p:button output="#" value="Паспорт"/>
+						<p:commandButton value="#{msgs.document}" onclick="dlg.show()" />
+						<p:commandButton value="Учет" onclick="dgd.show()"/>
+						<p:commandButton value="Табы" onclick="myTab.select(1)"/>
+						
+		         		<h:outputLabel for="nameWagon" value="Номер вагона:" style="font-weight:bold"/>
+						<p:inputText id="nameWagon" value="" />
+					</p:panelGrid>
+					-->
+	<p:dialog id="dialog" header="Dynamic Focus" widgetVar="dlg" focus="surname">  
+  		
+  		<div class="well">
+	        <h:panelGrid columns="2" cellpadding="5">  
+	  
+	            <h:outputLabel for="name" value="Name:" />  
+	            <p:inputText id="name" label="name" />  
+	              
+	            <h:outputLabel for="surname" value="Surname:" />  
+	            <p:inputText id="surname" label="surname" />  
+	                  
+	            <h:outputLabel for="telephone" value="Telephone:" />  
+	            <p:inputText id="telephone" label="telephone" />  
+	      
+	        </h:panelGrid>  
+  		</div>
+          
+    </p:dialog> 
+    <ui:remove>
+		<p:wizard >
+		</p:wizard>
+    </ui:remove>
+	<h:form id="mainForm">
+    <p:tabView id="tabId" dynamic="true"  effect="slide" widgetVar="myTab" effectDuration="fast">
+			<p:tab title="Заявка">
+				<ui:include src="/zajavka.xhtml"/>
+			</p:tab>
+			<p:tab title="Документ">
+			 	<ui:include src="/document.xhtml"/>
+			</p:tab>
+			<p:tab title="Технические характиристики">
+				<ui:include src="/techDetails.xhtml"/>
+			</p:tab>
+			<p:tab title="Список операций">
+			<div class="row-fluid">
+				<div class="span6">
+			 <h:form id="operationTableId">
+				 <p:dataTable id="lazyOperations" value="#{operationMB.operations}" var="myOperation" 
+				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
+				 	selection="#{operationMB.ugvOperation}" selectionMode="single" 
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				 	rowsPerPageTemplate="5,10"
+				 	sortBy="#{myOperation.id}" filteredValue="#{operationMB.filteredOperations}" >
+				 	
+					<p:ajax event="rowSelect" update=":mainForm:tabId:myDialog" oncomplete="operationDetails.show()" />
+	                <p:column sortBy="#{myOperation.id}">
+	                    <f:facet name="header">ID</f:facet>
+	                    <h:outputText value="#{myOperation.id}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.wagonNumber}" sortBy="#{myOperation.wagonNumber}">
+	                    <f:facet name="header">Номер вагона</f:facet>
+	                    <h:outputText value="#{myOperation.wagonNumber}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.priznakZapisi}" sortBy="#{myOperation.priznakZapisi}">
+	                    <f:facet name="header">Признак состояния записи</f:facet>
+	                    <h:outputText value="#{myOperation.priznakZapisi}" />
+	                </p:column>
+				 	
+				 </p:dataTable>
+			 </h:form>
+				</div>
+				
+				
+				<div class="span6">
+			 <h:form id="operationTableId2">
+				 <p:dataTable id="lazyOperations2" value="#{operationMB.operations}" var="myOperation" 
+				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
+				 	selection="#{operationMB.ugvOperation}" selectionMode="single" 
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				 	rowsPerPageTemplate="5,10"
+				 	sortBy="#{myOperation.id}" filteredValue="#{operationMB.filteredOperations}" >
+				 	
+					<p:ajax event="rowSelect" update=":mainForm:tabId:myDialog" oncomplete="operationDetails.show()" />
+	                <p:column sortBy="#{myOperation.id}">
+	                    <f:facet name="header">ID</f:facet>
+	                    <h:outputText value="#{myOperation.id}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.wagonNumber}" sortBy="#{myOperation.wagonNumber}">
+	                    <f:facet name="header">Номер вагона</f:facet>
+	                    <h:outputText value="#{myOperation.wagonNumber}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.priznakZapisi}" sortBy="#{myOperation.priznakZapisi}">
+	                    <f:facet name="header">Признак состояния записи</f:facet>
+	                    <h:outputText value="#{myOperation.priznakZapisi}" />
+	                </p:column>
+				 	
+				 </p:dataTable>
+			 </h:form>
+				</div>
+			</div>
+			 
+			<p:dialog id="myDialog" widgetVar="operationDetails" header="Operation" modal="true">
+            <h:form id="operationDialogForm">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Id: " />
+                    <h:outputText value="#{operationMB.ugvOperation.id}" />
+                    
+                    <h:outputText value="Номер вагона: " />
+                    <h:outputText value="#{operationMB.ugvOperation.wagonNumber}" />
+                    
+                    <h:outputText value="Признак состояния записи: " />
+                    <h:outputText value="#{operationMB.ugvOperation.priznakZapisi}" />
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+			 
+			</p:tab>
+    </p:tabView>
+		<p:remoteCommand onstart="heyho"></p:remoteCommand>
+	</h:form>
+		</ui:define>
+	</ui:composition>
+	
+        </h:body>
+
+    </f:view>
+</html>

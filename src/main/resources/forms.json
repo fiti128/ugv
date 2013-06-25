@@ -1,0 +1,75 @@
+{
+	"ВУ-1":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	true,
+		"depoDocumenta"			:	false,
+		"stanciaDislokacii"		 : 	true,
+		"stanciaDocumenta"		:	false,
+		"dataDocumenta"			:	true,
+		"kodPrichiniDocumenta"	:	false},
+	"ВУ-4":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	false,
+		"depoDocumenta"			:	true,
+		"stanciaDislokacii"		: 	false,
+		"stanciaDocumenta"		:	true,
+		"dataDocumenta"			:	true,
+		"kodPrichiniDocumenta"	: 	false},
+	"ВУ-10":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	true,
+		"depoDocumenta"			:	true,
+		"stanciaDislokacii"		:	true,
+		"stanciaDocumenta"		:	true,
+		"dataDocumenta"			:	true,
+		"kodPrichiniDocumenta"	:	true},
+	"ВУ-70":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	true,
+		"depoDocumenta"			:	true,
+		"stanciaDislokacii"		:	true,
+		"stanciaDocumenta"		:	true,
+		"dataDocumenta"			:	true,
+		"kodPrichiniDocumenta"	:	true},	  
+	"ИПВ-1":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	false,
+		"depoDocumenta"			:	false,
+		"stanciaDislokacii"		:	false,
+		"stanciaDocumenta"		:	false,
+		"dataDocumenta"			:	false,
+		"kodPrichiniDocumenta"	:	false},
+	"ИПВ-2":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	false,
+		"depoDocumenta"			:	true,
+		"stanciaDislokacii"		:	true,
+		"stanciaDocumenta"		:	true,
+		"dataDocumenta"			:	false,
+		"kodPrichiniDocumenta"	:	false},
+	"ИПВ-3":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	false,
+		"depoDocumenta"			:	false,
+		"stanciaDislokacii"		:	false,
+		"stanciaDocumenta"		:	false,
+		"dataDocumenta"			:	false,
+		"kodPrichiniDocumenta"	:	false},
+	"ИПВ-4":
+	{
+		"kodOperacii"			:	true,
+		"documentNumber"		:	false,
+		"depoDocumenta"			:	false,
+		"stanciaDislokacii"		:	false,
+		"stanciaDocumenta"		:	false,
+		"dataDocumenta"			:	false,
+		"kodPrichiniDocumenta"	:	false}
+}
+

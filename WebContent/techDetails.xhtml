@@ -1,0 +1,150 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+        	<title>IGNORED</title>
+        </h:head>
+       <h:body>
+       
+       <ui:composition>
+	       <h:form id="formTechDetails">  
+	          	<div class="pagination-centred">
+				        <h:graphicImage library="images" name="Documents_Black.png"/>
+	          	</div>
+	          <div class="row-fluid">
+	          	<div class="span6">
+				    <h:panelGrid id="panelGridTechDetails" columns="2" cellpadding="5">  
+
+     		            <h:outputLabel id="wagonNumberLabel" for="wagonNumber" value="#{msgs.wagonNumber}" /> 
+    		            <p:inputText id="wagonNumber" value="#{techDetails.wagonNumber}"/>
+      		            
+       		            <h:outputLabel id="kodDorozhAdministrLabel" for="kodDorozhAdministr" value="#{msgs.kodDorozhAdministr}" /> 
+       		            <p:inputText id="kodDorozhAdministr" value="#{techDetails.kodDorozhAdministr}" /> 
+       		            
+       		            <h:outputLabel id="kodSobstvLabel" for="kodSobstv" value="#{msgs.kodSobstv}"/> 
+       		            <p:inputText id="kodSobstv" value="#{techDetails.kodSobstv}" />  
+       		            
+       		            <h:outputLabel id="dorogaPripiskiLabel" for="dorogaPripiski" value="#{msgs.dorogaPripiski}" /> 
+       		            <p:inputText id="dorogaPripiski" value="#{techDetails.dorogaPripiski}" />
+       		            
+       		            <h:outputLabel id="stanciaPripiskiLabel" for="stanciaPripiski" value="#{msgs.stanciaPripiski}" /> 
+       		            <p:inputText id="stanciaPripiski" value="#{techDetails.stanciaPripiski}" />
+       		                   		            
+       		            <h:outputLabel id="poligonWagonaLabel" for="poligonWagona" value="#{msgs.poligonWagona}" /> 
+       		            <p:inputText id="poligonWagona" value="#{techDetails.poligonWagona}" />
+       		            
+	          			<h:outputLabel id="kodZavodaLabel" for="kodZavoda" value="#{msgs.kodZavoda}" /> 
+       		            <p:inputText id="kodZavoda" value="#{techDetails.kodZavoda}" />
+       		                   		            
+       		            <h:outputLabel id="zavNomerWagonaLabel" for="zavNomerWagona" value="#{msgs.zavNomerWagona}" /> 
+       		            <p:inputText id="zavNomerWagona" value="#{techDetails.zavNomerWagona}" />
+       		                   		            
+       		            <h:outputLabel id="tipWagonaLabel" for="tipWagona" value="#{msgs.tipWagona}" /> 
+       		            <p:inputText id="tipWagona" value="#{techDetails.tipWagona}" />
+       		                   		            
+       		            <h:outputLabel id="tipWagonaIzDocLabel" for="tipWagonaIzDoc" value="#{msgs.tipWagonaIzDoc}" /> 
+       		            <p:inputText id="tipWagonaIzDoc" value="#{techDetails.tipWagonaIzDoc}" />
+       		                   		            
+       		            <h:outputLabel id="idModeliWagonaLabel" for="idModeliWagona" value="#{msgs.idModeliWagona}" /> 
+       		            <p:inputText id="idModeliWagona" value="#{techDetails.idModeliWagona}" />
+       		                   		            
+       		            <h:outputLabel id="modelWagonaIzPasportaLabel" for="modelWagonaIzPasporta" value="#{msgs.modelWagonaIzPasporta}" /> 
+       		            <p:inputText id="modelWagonaIzPasporta" value="#{techDetails.modelWagonaIzPasporta}" />
+       		                   		            
+       		            <h:outputLabel id="modelWagonaIzSpravochnikaLabel" for="modelWagonaIzSpravochnika" value="#{msgs.modelWagonaIzSpravochnika}" /> 
+       		            <p:inputText id="modelWagonaIzSpravochnika" value="#{techDetails.modelWagonaIzSpravochnika}" />      		                   		            
+    		           
+    		            <h:outputLabel id="techUsloviaLabel" for="techUslovia" value="#{msgs.techUslovia}" /> 
+       		            <p:inputText id="techUslovia" value="#{techDetails.techUslovia}" />
+       		                   		                   		            
+       		            <h:outputLabel id="taraWagonaLabel" for="taraWagona" value="#{msgs.taraWagona}" /> 
+       		            <p:inputText id="taraWagona" value="#{techDetails.taraWagona}" />
+       		                   		                   		            
+       		            <h:outputLabel id="taraWagonaPoTraforetuLabel" for="taraWagonaPoTraforetu" value="#{msgs.taraWagonaPoTraforetu}" /> 
+       		            <p:inputText id="taraWagonaPoTraforetu" value="#{techDetails.taraWagonaPoTraforetu}" /> 	
+       		            
+       		            <h:outputLabel id="gruzopodjemnostLabel" for="gruzopodjemnost" value="#{msgs.gruzopodjemnost}" /> 
+       		            <p:inputText id="gruzopodjemnost" value="#{techDetails.gruzopodjemnost}" />
+       		                   		                   		            
+       		            <h:outputLabel id="gruzopodjemnostPoTraforetuLabel" for="gruzopodjemnostPoTraforetu" value="#{msgs.gruzopodjemnostPoTraforetu}" /> 
+       		            <p:inputText id="gruzopodjemnostPoTraforetu" value="#{techDetails.gruzopodjemnostPoTraforetu}" />
+       		        </h:panelGrid>  
+	          	</div>
+	          	<div class="span6">
+	          		<h:panelGrid id="panelGridTechDetailsRight" columns="2" cellpadding="5">
+	          	                   		                   		            
+       		            <h:outputLabel id="dlinaPoOsiamAvtocepokLabel" for="dlinaPoOsiamAvtocepok" value="#{msgs.dlinaPoOsiamAvtocepok}" /> 
+       		            <p:inputText id="dlinaPoOsiamAvtocepok" value="#{techDetails.dlinaPoOsiamAvtocepok}" />
+       		            
+         		        <h:outputLabel id="gabaritLabel" for="gabarit" value="#{msgs.gabarit}" /> 
+       		            <p:inputText id="gabarit" value="#{techDetails.gabarit}" />
+       		            
+       		            <h:outputLabel id="materialObshivkiKuzovaLabel" for="materialObshivkiKuzova" value="#{msgs.materialObshivkiKuzova}" /> 
+       		            <p:inputText id="materialObshivkiKuzova" value="#{techDetails.materialObshivkiKuzova}" />
+       		                   		                   		            
+       		            <h:outputLabel id="tipVozduharasprLabel" for="tipVozduharaspr" value="#{msgs.tipVozduharaspr}" /> 
+       		            <p:inputText id="tipVozduharaspr" value="#{techDetails.tipVozduharaspr}" />
+       		                   		                   		                   		            
+       		            <h:outputLabel id="avtoregulRychazchPeredachiLabel" for="avtoregulRychazchPeredachi" value="#{msgs.avtoregulRychazchPeredachi}" /> 
+       		            <p:inputText id="avtoregulRychazchPeredachi" value="#{techDetails.avtoregulRychazchPeredachi}" />
+       		                   		                   		            
+       		            <h:outputLabel id="ruchazchnPeredachaLabel" for="ruchazchnPeredacha" value="#{msgs.ruchazchnPeredacha}" /> 
+       		            <p:inputText id="ruchazchnPeredacha" value="#{techDetails.ruchazchnPeredacha}" />
+       		            
+						<h:outputLabel id="avtorezchimLabel" for="avtorezchim" value="#{msgs.avtorezchim}" /> 
+       		            <p:inputText id="avtorezchim" value="#{techDetails.avtorezchim}" />
+       		                   		                   		            
+       		            <h:outputLabel id="ruchnTormozLabel" for="ruchnTormoz" value="#{msgs.ruchnTormoz}" /> 
+       		            <p:inputText id="ruchnTormoz" value="#{techDetails.techUslovia}" />
+       		                   		                   		            
+       		            <h:outputLabel id="tipAvtoscepkiLabel" for="tipAvtoscepki" value="#{msgs.tipAvtoscepki}" /> 
+       		            <p:inputText id="tipAvtoscepki" value="#{techDetails.tipAvtoscepki}" />
+       		                   		                   		                   		            
+       		            <h:outputLabel id="tipPoglAparataLabel" for="tipPoglAparata" value="#{msgs.tipPoglAparata}" /> 
+       		            <p:inputText id="tipPoglAparata" value="#{techDetails.tipPoglAparata}" />
+      		                   		                   		                   		            
+       		            <h:outputLabel id="vozmozchnPostanovkiBuferovLabel" for="vozmozchnPostanovkiBuferov" value="#{msgs.vozmozchnPostanovkiBuferov}" /> 
+       		            <p:inputText id="vozmozchnPostanovkiBuferov" value="#{techDetails.vozmozchnPostanovkiBuferov}" />
+       		                   		                   		            
+      		            <h:outputLabel id="modelTelezchekLabel" for="modelTelezchek" value="#{msgs.modelTelezchek}" /> 
+       		            <p:inputText id="modelTelezchek" value="#{techDetails.modelTelezchek}" />
+       		                   		                   		            
+       		            <h:outputLabel id="podpolUsilBalkiLabel" for="podpolUsilBalki" value="#{msgs.podpolUsilBalki}" /> 
+       		            <p:inputText id="podpolUsilBalki" value="#{techDetails.podpolUsilBalki}" />
+       		                   		                   		            
+       		            <h:outputLabel id="kalibrovkaKotlaLabel" for="kalibrovkaKotla" value="#{msgs.kalibrovkaKotla}" /> 
+       		            <p:inputText id="kalibrovkaKotla" value="#{techDetails.kalibrovkaKotla}" />
+       		                   		                   		            
+       		            <h:outputLabel id="slivnPriborLabel" for="slivnPribor" value="#{msgs.slivnPribor}" /> 
+       		            <p:inputText id="slivnPribor" value="#{techDetails.slivnPribor}" />
+       		                   		                   		            
+       		            <h:outputLabel id="ramaLabel" for="rama" value="#{msgs.rama}" /> 
+       		            <p:inputText id="rama" value="#{techDetails.rama}" />
+       		                   		                   		            
+       		            <h:outputLabel id="konstrKotlaLabel" for="konstrKotla" value="#{msgs.konstrKotla}" /> 
+       		            <p:inputText id="konstrKotla" value="#{techDetails.konstrKotla}" />
+       		                   		                   		            
+       		            <h:outputLabel id="kodSMGS1Label" for="kodSMGS1" value="#{msgs.kodSMGS1}" /> 
+       		            <p:inputText id="kodSMGS1" value="#{techDetails.kodSMGS1}" />       		            
+            		 
+            		</h:panelGrid>
+	          	</div>
+	          			
+	          </div>
+	          	<div class="pagination-right">
+	          			
+				   <p:commandButton id="buttonTechDetails" value="Submit" />  
+	          	</div>
+			</h:form> 
+       </ui:composition>
+       
+       
+         </h:body>
+		
+
+    </f:view>
+</html>

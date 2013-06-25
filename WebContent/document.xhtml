@@ -1,0 +1,66 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+        	<title>IGNORED</title>
+        </h:head>
+       <h:body>
+       
+       <ui:composition>
+	       <h:form id="form9">  
+	          <div class="row-fluid">
+	          	<div class="span4">
+				        <h:graphicImage library="images" name="Text.png"/>
+	          	</div>
+	          	<div class="span8">
+				    <h:panelGrid id="panelGrid9" columns="2" cellpadding="5">  
+
+    		            <h:outputLabel id="formaDocumentaLabel" for="formaDocumenta" value="#{msgs.form}" /> 
+       		            <p:selectOneMenu  id="formaDocumenta"  value="#{document.form}">
+       		            	<f:selectItems value="#{documentForm.formList}"></f:selectItems>
+       		           		 <p:ajax update="form9"  
+                        			listener="#{documentForm.handleFormChanged(document.form)}" /> 
+       		            </p:selectOneMenu>  
+       		            
+       		            <h:outputLabel id="documentNumberLabel" for="documentNumber" value="#{msgs.documentNumber}" rendered="#{documentForm.documentNumber}" /> 
+       		            <p:inputText id="documentNumber" value="#{document.documentNumber}" rendered="#{documentForm.documentNumber}" /> 
+       		            
+       		            <h:outputLabel id="dataDocumentaLabel" for="dataDocumenta" value="#{msgs.documentDate}" rendered="#{documentForm.dataDocumenta}" /> 
+       		            <p:calendar id="dataDocumenta" value="#{document.documentDate}" rendered="#{documentForm.dataDocumenta}" />  
+       		            
+       		            <h:outputLabel id="kodPrichiniDocumentaLabel" for="kodPrichiniDocumenta" value="#{msgs.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  /> 
+       		            <p:inputText id="kodPrichiniDocumenta" value="#{document.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  />
+       		            
+       		            <h:outputLabel id="depoDocumentaLabel" for="depoDocumenta" value="#{msgs.depoDocumenta}" rendered="#{documentForm.depoDocumenta}"  /> 
+       		            <p:inputText id="depoDocumenta" value="#{document.depoDocumenta}" rendered="#{documentForm.depoDocumenta}"  />
+       		            
+       		            <h:outputLabel id="stanciaDocumentaLabel" for="stanciaDocumenta" value="#{msgs.stanciaDocumenta}" rendered="#{documentForm.stanciaDocumenta}"  /> 
+       		            <p:inputText id="stanciaDocumenta" value="#{document.stanciaDocumenta}" rendered="#{documentForm.stanciaDocumenta}"  />
+       		            
+       		            <h:outputLabel id="stanciaDislokaciiLabel" for="stanciaDislokacii" value="#{msgs.stanciaDislokacii}" rendered="#{documentForm.stanciaDislokacii}"  /> 
+       		            <p:inputText id="stanciaDislokacii" value="#{document.stanciaDislokacii}" rendered="#{documentForm.stanciaDislokacii}"  />
+       		            
+       		            <h:outputLabel id="kodOperaciiLabel" for="kodOperacii" value="#{msgs.kodOperacii}" rendered="#{documentForm.kodOperacii}"  /> 
+       		            <p:inputText id="kodOperacii" value="#{document.kodOperacii}" rendered="#{documentForm.kodOperacii}"  />
+       		           
+ 				    </h:panelGrid>  
+	          	</div>
+	          			
+	          	<div class="pagination-right">
+	          			
+				        <p:commandButton id="button9" value="Submit" />  
+	          	</div>
+	          </div>
+			</h:form> 
+       </ui:composition>
+       
+       
+         </h:body>
+		
+
+    </f:view>
+</html>
