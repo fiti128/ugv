@@ -73,7 +73,10 @@ public class LazyOperationList extends LazyDataModel<UgvOperation> {
 	@Override
 	public UgvOperation getRowData(String rowKey) {
 		logger.error(String.format("In LazyList getRowData(String rowKey) %n rowKey = %s",rowKey));
-		UgvOperation operation = list.get(0);
+		UgvOperation operation = null;
+		if (list.size() > 0) {
+			operation = list.get(0);
+		}
 		try {
 				Timestamp timestamp = Timestamp.valueOf(rowKey);
 				for (UgvOperation ugvOperation : list) {
@@ -85,7 +88,9 @@ public class LazyOperationList extends LazyDataModel<UgvOperation> {
 		} catch (IllegalArgumentException e) {
 			logger.error("rowKey is not timestamp",e);
 		}
-		
+		if (operation == null) {
+			operation = new UgvOperation();
+		}
 		
 			return operation;
 	}

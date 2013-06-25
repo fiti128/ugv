@@ -81,7 +81,7 @@ public abstract class GenericDaoJpaImpl<T,PK extends Serializable> implements Ge
 		Set<Entry<String,String>> filtersEntries = filters.entrySet();
 		int i = 0;
 		for (Entry<String, String> entry : filtersEntries) {
-			Expression<String> literal = cb.literal(entry.getValue());
+			Expression<String> literal = cb.literal("%"+entry.getValue() +"%");
 //			predicates[i++] = cb.like(rootFrom.get(
 //					type.getDeclaredSingularAttribute(
 //							entry.getKey(),String.class)), literal);
