@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    
+    	
+        <h:head>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+         	    <title>
+                		<ui:insert name="windowTitle">
+                		#{msgs.ugvTitle }
+                		</ui:insert>
+                </title>
+                <h:outputScript library="js" name="myscript.js" target="body"></h:outputScript>
+				<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+				<h:outputScript library="primefaces" name="jquery/jquery.js" />
+				<h:outputScript library="js" name="myscript.js"/>
+        </h:head>
+		
+		
+        <h:body>
+        <div class="wrapper">
+    		<div class="container-fluid">
+        	<div class="header">
+        		<div class="row-fluid">
+        			<div class="span4 pagination-centered">
+        				<h:outputLink value="/ugv/index.xhtml">
+        					<h:graphicImage  library="images" name="irc-logo.png"></h:graphicImage>
+        				</h:outputLink>
+        			</div>
+        			
+        			<div class="span8 muted pagination-centered">
+	        			<h3><strong>
+	        			#{msgs.headerTitle}
+	        			</strong></h3>
+        			</div>
+        		</div>
+        	</div>
+        	
+				<ui:insert name="content"></ui:insert>
+        	
+			
+			
+	</div>
+		</div>
+			<div class="footer">
+						<div class="container-fluid">
+							
+							
+			<ui:insert name="footer">
+				<h:form>
+					<p:dock proximity="90" itemWidth="80" maxWidth="120">
+						<p:menuitem value="#{msgs.newDoc}" icon="/resources/images/Text.png" onclick="dgd.show()"/>
+						<p:menuitem value="#{msgs.newZajavka}" icon="/resources/images/testimonial.png" onclick="zajavka.show()"/>
+						<p:menuitem value="#{msgs.newOperation}" icon="/resources/images/Developer_Black_Alternate.png" onclick="heyho()"/>
+						<p:menuitem value="#{msgs.newTechDetails}" icon="/resources/images/Documents2.png" onclick="techDetails.show()"/>
+						<p:menuitem value="#{msgs.newFicha}" icon="/resources/images/Documents_Black.png" onclick="dgd.show()"/>
+					</p:dock>
+				</h:form>
+					
+					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogDoc" header="#{msgs.newDoc}" widgetVar="dgd">
+					   <ui:include src="/document.xhtml"/>
+					</p:dialog>
+					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogZajavka" header="#{msgs.newZajavka}" widgetVar="zajavka">
+					   <ui:include src="/zajavka.xhtml"/>
+					</p:dialog>
+					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogTechDetails" header="#{msgs.newZajavka}" widgetVar="techDetails">
+					   <ui:include src="/techDetails.xhtml"/>
+					</p:dialog>
+			</ui:insert>
+
+        	<div id="loading" class="pull-right navbar-fixed-bottom">
+        		<div class="pagination-right">
+			  <p><img src="/ugv/resources/images/382.gif" /> Пожалуйста подождите</p>
+        		</div>
+			</div>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<br/>
+							<p class="muted credit">
+								#{msgs.footer}
+							</p>
+						</div>
+			
+			</div>
+			
+        </h:body>
+
+    
+</html>

@@ -8,15 +8,10 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -30,14 +25,14 @@ import rw.ugv.dao.GenericDAO;
 
 public abstract class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<T,PK> {
 	
-	
+	@PersistenceContext(unitName="sample")
 	protected EntityManager entityManager;
 	protected Class<T> entityClass;
 	
 	@SuppressWarnings("unchecked")
 	public GenericDaoJpaImpl() {
-		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("sample");
-		entityManager = entityFactory.createEntityManager();
+//		EntityManagerFactory entityFactory = Persistence.createEntityManagerFactory("sample");
+//		entityManager = entityFactory.createEntityManager();
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
         .getGenericSuperclass();
 		this.entityClass = (Class<T>) genericSuperclass

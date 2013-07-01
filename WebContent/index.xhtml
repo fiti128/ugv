@@ -49,6 +49,19 @@ xmlns:p="http://primefaces.org/ui">
 		<p:wizard >
 		</p:wizard>
     </ui:remove>
+    <f:view locale="#{language.locale}">
+		 <h:form id="languageForm">
+
+			 
+			<h:selectOneMenu value="#{language.language}" onchange="submit()">
+                <f:selectItem itemValue="en" itemLabel="English" />
+                <f:selectItem itemValue="ru" itemLabel="Russian" />
+            </h:selectOneMenu>
+ 			<p><h:outputText value="#{msgs.footer}"/></p>
+
+		</h:form>
+    </f:view>
+
 	<h:form id="mainForm">
     <p:tabView id="tabId" dynamic="true"  effect="slide" widgetVar="myTab" effectDuration="fast">
 			<p:tab title="Заявка">
@@ -89,7 +102,6 @@ xmlns:p="http://primefaces.org/ui">
 			 </h:form>
 				</div>
 				
-				
 				<div class="span6">
 			 <h:form id="operationTableId2">
 				 <p:dataTable id="lazyOperations2" value="#{operationMB.operations}" var="myOperation" 
@@ -115,6 +127,12 @@ xmlns:p="http://primefaces.org/ui">
 				 	
 				 </p:dataTable>
 			 </h:form>
+			 	<p:commandButton onclick="#{main.changeToEng()}" value="eng"/>
+				<p:commandButton action="#{main.sayHiToConsole()}" value="say"/>
+				<p:commandButton onclick="#{main.changeToRus()}" value="rus"/>
+				<p:button ajax="#{main.changeToEng()}" value="eng"/>
+				<p:button action="#{main.sayHiToConsole()}" value="say"/>
+				<p:button onclick="#{main.changeToRus()}" value="rus"/>
 				</div>
 			</div>
 			 
@@ -139,7 +157,7 @@ xmlns:p="http://primefaces.org/ui">
 	</h:form>
 		</ui:define>
 	</ui:composition>
-	
+
         </h:body>
 
     </f:view>
