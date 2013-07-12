@@ -3,8 +3,11 @@ package rw.ugv.view;
 import java.io.Serializable;
 
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.annotation.Resource;
+import javax.enterprise.context.SessionScoped;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 import org.primefaces.model.LazyDataModel;
@@ -13,24 +16,22 @@ import rw.ugv.dao.OperationDAO;
 import rw.ugv.dao.impl.OperationDaoJpaImpl;
 import rw.ugv.dto.UgvOperation;
 
-@ManagedBean
-@ViewScoped
+@Named
+@SessionScoped
 public class OperationMB implements Serializable {
 	private static Logger logger = Logger.getLogger(OperationMB.class);
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3637216621138713877L;
-	private LazyDataModel<UgvOperation> operations = null;
+	@Inject
+	private LazyDataModel<UgvOperation> operations;
 	private UgvOperation ugvOperation;
 	private LazyDataModel<UgvOperation> filteredOperations = null;
 
+
 	public LazyDataModel<UgvOperation> getOperations() {
 		logger.debug("In OperationMB getOperations()");
-		if (operations == null) { 
-			OperationDAO operationDao = new OperationDaoJpaImpl();
-			operations = new LazyOperationList(operationDao); 
-		}
 		return operations;
 	}
 

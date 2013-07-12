@@ -7,11 +7,12 @@ import java.util.Locale;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
  
-@ManagedBean(name="language")
+@Named(value="language")
 @SessionScoped
 public class LanguageBean implements Serializable{
  

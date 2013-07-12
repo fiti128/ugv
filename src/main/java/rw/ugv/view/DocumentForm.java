@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Transient;
 
@@ -19,8 +19,8 @@ import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
 
-@ManagedBean
-@ViewScoped
+@Named
+@SessionScoped
 public class DocumentForm implements Serializable {
 	
 	/**
