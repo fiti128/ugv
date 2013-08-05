@@ -1,0 +1,76 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+        	<title>IGNORED</title>
+        </h:head>
+       <h:body>
+       
+       <ui:composition>
+       <div class="row-fluid">
+				<div class="span6">
+	       <h:form id="documentsTableId">
+				 <p:dataTable id="lazyDocumentsDataTable" value="#{documentMB.documentModel}" var="myDocument" 
+				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
+				 	selection="#{documentMB.ugvDocument}" selectionMode="single" 
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				 	rowsPerPageTemplate="5,10"
+				 	sortBy="#{myDocument.id}" filteredValue="#{documentMB.filteredDocuments}" >
+				 	
+				   <p:column sortBy="#{myDocument.id}">
+	                    <f:facet name="header">ID</f:facet>
+	                    <h:outputText value="#{myDocument.id}" />
+	                </p:column>
+	                <p:column filterBy="#{myDocument.form}" sortBy="#{myDocument.form}">
+	                    <f:facet name="header">Форма документа</f:facet>
+	                    <h:outputText value="#{myDocument.form}" />
+	                </p:column>
+	                <p:column filterBy="#{myDocument.documentNumber}" sortBy="#{myDocument.documentNumber}">
+	                    <f:facet name="header">Номер документа</f:facet>
+	                    <h:outputText value="#{myDocument.documentNumber}" />
+	                </p:column>
+	                
+				 <p:ajax event="rowSelect" update=":mainForm:tabId:docDependentOperationTableAll"  />	
+				 </p:dataTable>
+			</h:form>
+			 </div>
+			 <div class="span6">
+			 	<h:form id="docDependentOperationTableAll">
+			 	  <p:dataTable id="lazydocDependentOperations" value="#{operationMB.operations}" var="myOperation" 
+				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
+				 	selection="#{operationMB.ugvOperation}" selectionMode="single" 
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				 	rowsPerPageTemplate="5,10"
+				 	sortBy="#{myOperation.id}" filteredValue="#{operationMB.filteredOperations}" >
+				 	
+					
+	                <p:column sortBy="#{myOperation.id}">
+	                    <f:facet name="header">ID</f:facet>
+	                    <h:outputText value="#{myOperation.id}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.wagonNumber}" sortBy="#{myOperation.wagonNumber}">
+	                    <f:facet name="header">Номер вагона</f:facet>
+	                    <h:outputText value="#{myOperation.wagonNumber}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.priznakZapisi}" sortBy="#{myOperation.priznakZapisi}">
+	                    <f:facet name="header">Признак состояния записи</f:facet>
+	                    <h:outputText value="#{myOperation.priznakZapisi}" />
+	                </p:column>
+	 	
+				 </p:dataTable>
+			 </h:form>
+			 	
+			 </div>	  
+		</div>
+       </ui:composition>
+       
+       
+         </h:body>
+		
+
+    </f:view>
+</html>

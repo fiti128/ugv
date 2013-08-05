@@ -23,7 +23,7 @@ import org.hibernate.annotations.CascadeType;
 @ManagedBean(name="operation")
 @ViewScoped
 @Entity
-@Table(name = "VGO", schema="UGVSCH")
+@Table(name = "UCHET", schema="UGVSCH")
 public class UgvOperation implements Serializable {
 
 	/**
@@ -40,7 +40,7 @@ public class UgvOperation implements Serializable {
 	 * Дата и время записи документа
 	 */
 	@ManyToOne
-	@JoinColumn(name = "DOC_ID")
+	@JoinColumn(name = "ID_DOC")
 	@Cascade(value = CascadeType.ALL)
 	private UgvDocument ugvDocId;
 	
@@ -48,7 +48,7 @@ public class UgvOperation implements Serializable {
 	 * Дата и время записи о технических характеристиках
 	 */
 	@ManyToOne
-	@JoinColumn(name = "TEX_ID")
+	@JoinColumn(name = "ID_VAGON")
 	@Cascade(value = CascadeType.ALL)
 	private UgvTechnicalDetails ugvTechId;
 	
@@ -56,7 +56,7 @@ public class UgvOperation implements Serializable {
 	 * Дата и время записи заявки
 	 */
 	@ManyToOne
-	@JoinColumn(name = "ZAJAV_ID")
+	@JoinColumn(name = "ID_ZAJAV")
 	@Cascade(value = CascadeType.ALL)
 	private UgvZajavka ugvZajavkaId;
 	
@@ -65,7 +65,7 @@ public class UgvOperation implements Serializable {
 	 */
 	@Id
 	@Temporal( value = TemporalType.TIMESTAMP ) 
-	@Column (name = "ZAP_ID", nullable = false, updatable = false)
+	@Column (name = "ID_OP", nullable = false, updatable = false)
 	private Date id;
 	
 	/**
@@ -92,43 +92,43 @@ public class UgvOperation implements Serializable {
 	 * Признак состояния записи
 	 */
 	@Max(value=1)
-	@Column (name = "PR_ZAP")
+	@Column (name = "PR_ZAPIS")
 	private String priznakZapisi;
 	
 	/**
 	 * Код операции
 	 */
-	@Column (name = "KOP")
+	@Column (name = "KOD_OP")
 	private String kodVGO;
 	
 	/**
 	 * Код парной операции
 	 */
-	@Column (name = "KPAROP")
+	@Column (name = "KOD_PARNOI_OP")
 	private String kodParnojOperacii;
 	
 	/**
 	 * Дата регистрации парной операции
 	 */
-	@Column (name = "DATPAROP")
+	@Column (name = "DATA_PARNOI_OP")
 	private Calendar dataRegistraciiParnojOperacii;
 	
 	/**
 	 * Связный номер вагона
 	 */
-	@Column (name = "SNV")
+	@Column (name = "SVIASNYI_NV")
 	private String sviaznojNomerVagona;
 	
 	/**
 	 * Код государства собственника
 	 */
-	@Column (name = "SOB")
+	@Column (name = "KOD_SOBSTVENIKA")
 	private String kodGosudarstvaSobstvennika;
 	
 	/**
 	 * Код нового государства собственника
 	 */
-	@Column (name = "NSOB")
+	@Column (name = "KOD_NOVOGO_SOBSTVENIKA")
 	private String kodNovogiGosudarstvaSobstvennika;
 
 

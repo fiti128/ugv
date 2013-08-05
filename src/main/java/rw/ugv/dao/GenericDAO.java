@@ -12,5 +12,6 @@ public interface GenericDAO<T,PK extends Serializable> {
 	void delete(T t) throws Exception;
 	List<T> pagination(int firstResult, int maxResults, String orderByfieldName, boolean ascending, Map<String, String> filters) throws Exception;
 	long rowsNumber() throws Exception;
+	long rowsNumber(String sortField, Map<String, String> filters) throws Exception;
 	
 }

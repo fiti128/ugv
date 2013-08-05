@@ -6,14 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-
-
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -22,7 +17,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 
-import javax.transaction.UserTransaction;
+
 
 import org.apache.log4j.Logger;
 
@@ -30,23 +25,28 @@ import org.apache.log4j.Logger;
 
 
 import rw.ugv.dao.GenericDAO;
+import rw.ugv.qualifiers.UgvDatabase;
 
 //@ManagedBean
 //@TransactionAttribute(TransactionAttributeType.REQUIRED)
 //@SessionScoped
 //@Stateless
 public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<T,PK>,Serializable {
-	private Logger logger = Logger.getLogger(GenericDaoJpaImpl.class);
+	@Inject
+	private transient Logger logger;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 9208010251414413491L;
-	@PersistenceUnit(unitName="sample")
-	protected EntityManagerFactory entityManagerFactory;
+//	@PersistenceUnit(unitName="sample")
+//	protected EntityManagerFactory entityManagerFactory;
+	@Inject @UgvDatabase
+//	@PersistenceContext(name="sample",type=PersistenceContextType.TRANSACTION)
+	protected EntityManager entityManager;
 	protected Class<T> entityClass;
 	
-	@Resource
-    private UserTransaction userTransaction;
+//	@Resource
+//    private UserTransaction userTransaction;
 	
 	@SuppressWarnings("unchecked")
 	public GenericDaoJpaImpl() {
@@ -59,9 +59,9 @@ public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<
 	}
 	@PostConstruct
 	public void init() {
-		System.err.println("rly? i am in postConstruct. Here is entityManager" + entityManagerFactory);
-		
-		System.err.println("Here is builder" + entityManagerFactory.getCriteriaBuilder());
+//		System.err.println("rly? i am in postConstruct. Here is entityManager" + entityManagerFactory);
+//		
+//		System.err.println("Here is builder" + entityManagerFactory.getCriteriaBuilder());
 //		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
 
@@ -70,50 +70,59 @@ public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<
 	}
 	@Override
 	public void create(T t) throws Exception {
-		try {
-			try {
-				userTransaction.begin();
-				EntityManager entityManager = entityManagerFactory.createEntityManager();
+//		try {
+//			try {
+//				userTransaction.begin();
+//				EntityManager entityManager = entityManagerFactory.createEntityManager();
+		logger.debug("In create. Object to persist" +t.toString());
+//				entityManager.joinTransaction();
+				entityManager.getTransaction().begin();
 				entityManager.persist(t);
-			} finally {
-				userTransaction.commit();
-			}
-		} catch (Exception e) {
-				userTransaction.rollback();
-				throw e;
-		} 
+				entityManager.flush();
+//				entityManager.close();
+//				entityManager.getTransaction().commit();
+
+				
+
+//			} finally {
+//				userTransaction.commit();
+//			}
+//		} catch (Exception e) {
+//				userTransaction.rollback();
+//				throw e;
+//		} 
 	}
 
 	@Override
 	public T update(T t) {
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+//		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		return entityManager.merge(t);
 	}
 
 	@Override
 	public T read(PK pk) {
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+//		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		return entityManager.find(entityClass, pk);
 	}
 
 	@Override
 	public void delete(T t) {
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+//		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		t = entityManager.merge(t);
 		entityManager.remove(t);
 	}
 	
 	@Override
 	public List<T> pagination(int firstResult, int maxResults, String fieldName, boolean ascending, Map<String, String> filters) throws Exception {
-		logger.debug(String.format("EntityManagerFactory in pagination is %s", entityManagerFactory));
-		logger.debug(String.format("EntityManagerFactory.getCriteriaBuilder in pagination is %s", entityManagerFactory.getCriteriaBuilder()));
-		try {
-			try {
-				userTransaction.begin();
-				EntityManager entityManager = entityManagerFactory.createEntityManager();
-				logger.debug(String.format("User transaction status is %d", userTransaction.getStatus()));
+//		logger.debug(String.format("EntityManagerFactory in pagination is %s", entityManagerFactory));
+//		logger.debug(String.format("EntityManagerFactory.getCriteriaBuilder in pagination is %s", entityManagerFactory.getCriteriaBuilder()));
+//		try {
+//			try {
+//				userTransaction.begin();
+//				EntityManager entityManager = entityManagerFactory.createEntityManager();
+//				logger.debug(String.format("User transaction status is %d", userTransaction.getStatus()));
 		// Создаем ч
-				entityManager.joinTransaction();
+//				entityManager.joinTransaction();
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<T> query = cb.createQuery(entityClass);
 		Root<T> rootFrom = query.from(entityClass);
@@ -140,23 +149,43 @@ public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<
 		List<T> list = entityQuery.getResultList();
 		
 		return list;
-			} finally {
-				userTransaction.commit();
-			}
-		} catch (Exception e) {
-			int transactionState = userTransaction.getStatus();  
-			   if ( transactionState == javax.transaction.Status.STATUS_ACTIVE) {  
-			     userTransaction.rollback();    
-			   }  
-				throw e;
-		} 
+//			} finally {
+//				userTransaction.commit();
+//			}
+//		} catch (Exception e) {
+//			int transactionState = userTransaction.getStatus();  
+//			   if ( transactionState == javax.transaction.Status.STATUS_ACTIVE) {  
+//			     userTransaction.rollback();    
+//			   }  
+//				throw e;
+//		} 
 	}
 	@Override
 	public long rowsNumber() {
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
+//		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Long> query = cb.createQuery(Long.class);
 		Root<T> rootFrom = query.from(entityClass);
+		query.select(cb.count(rootFrom));
+		return entityManager.createQuery(query).getSingleResult();
+		
+	}
+	@Override
+	public long rowsNumber(String sortField, Map<String, String> filters)
+			throws Exception {
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Long> query = cb.createQuery(Long.class);
+		Root<T> rootFrom = query.from(entityClass);
+		// Создаем массив предикейтов
+		Predicate[] predicates = new Predicate[filters.size()];
+
+		Set<Entry<String,String>> filtersEntries = filters.entrySet();
+		int i = 0;
+		for (Entry<String, String> entry : filtersEntries) {
+			Expression<String> literal = cb.literal("%"+entry.getValue() +"%");
+			predicates[i++] = cb.like(rootFrom.<String>get(entry.getKey()), literal);
+		}
+		query.where(predicates);
 		query.select(cb.count(rootFrom));
 		return entityManager.createQuery(query).getSingleResult();
 		

@@ -19,8 +19,7 @@ public class LanguageBean implements Serializable{
 	/**
 	 * 
 	 */
-	@PersistenceContext(unitName="sample")
-	private EntityManager entityManager;
+
 	private static final long serialVersionUID = 8073730549184420714L;
 	private Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 
@@ -34,7 +33,6 @@ public class LanguageBean implements Serializable{
 
     public void setLanguage(String language) {
         locale = new Locale(language);
-        System.err.println(entityManager);
         FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
     }
  

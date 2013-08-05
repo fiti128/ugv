@@ -1,4 +1,4 @@
-package rw.ugv.view;
+package rw.ugv.primefaces.models;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModelListener;
 import javax.inject.Inject;
@@ -22,25 +20,26 @@ import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import rw.ugv.dao.OperationDAO;
-import rw.ugv.dao.impl.GenericDaoJpaImpl;
-import rw.ugv.dao.impl.OperationDaoJpaImpl;
+import rw.ugv.dto.UgvDocument;
 import rw.ugv.dto.UgvOperation;
+import rw.ugv.qualifiers.LazyOperationModel;
+import rw.ugv.qualifiers.Selected;
+
 @Named(value="operations")
-@RequestScoped
-public class LazyOperationList extends LazyDataModel<UgvOperation> implements Serializable {
-	public static Logger logger = Logger.getLogger(LazyOperationList.class);
+@SessionScoped @LazyOperationModel
+public class OperationModel extends LazyDataModel<UgvOperation> implements Serializable {
+	public static Logger logger = Logger.getLogger(OperationModel.class);
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 411283559847593822L;
 	
-//	public LazyOperationList(OperationDAO operationDao) {
-//		this.operationDao = operationDao;
-//	}
-//	@Inject
-//	GenericDaoJpaImpl<UgvOperation,Timestamp> operationDao;.
+
 	@Inject
 	OperationDAO operationDao;
+	
+	@Inject @Selected
+	UgvDocument ugvDocument;
 	
 	@PostConstruct
 	public void testDao() {
@@ -54,6 +53,7 @@ public class LazyOperationList extends LazyDataModel<UgvOperation> implements Se
 			SortOrder sortOrder, Map<String, String> filters) {
 		
 		System.err.println("in LazyOperationModel load()");
+		System.err.println(ugvDocument);
 		Set<String> keys = filters.keySet();
 		for (String string : keys) {
 			logger.fatal(string);
@@ -69,11 +69,19 @@ public class LazyOperationList extends LazyDataModel<UgvOperation> implements Se
 		boolean ascending = (sortOrder == SortOrder.ASCENDING) ? true : false;
 		
 		try {
-			list = operationDao.pagination(first, pageSize, sortField, ascending, filters);
+			long rowCount = 0;
+			if (ugvDocument.getForm() == null) {
+				list = operationDao.pagination(first, pageSize, sortField, ascending, filters);
+				rowCount = operationDao.rowsNumber(sortField,filters);
+			}
+			else{
+				list = operationDao.docDependentPagination(ugvDocument,first, pageSize, sortField, ascending, filters);
+				rowCount = operationDao.rowsNumber(ugvDocument,sortField,filters);
+			}
 			for (UgvOperation ugvOperation : list) {
 				logger.debug(ugvOperation);
 			}
-			long rowCount = operationDao.rowsNumber();
+
 			int rowCountInt = (int) ((rowCount < Integer.MAX_VALUE)
 				? rowCount : Integer.MAX_VALUE);
 			if (rowCountInt == Integer.MAX_VALUE) {
