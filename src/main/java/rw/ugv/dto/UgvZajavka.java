@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 @ManagedBean(name="zajavka")
 @ViewScoped
 @Entity
-@Table(name = "ZAJAV", schema="UGVSCH")
+@Table(name = "ZAJAV", schema="UGV")
 public class UgvZajavka implements Serializable {
 
 	private static final long serialVersionUID = 8111608703615462876L;

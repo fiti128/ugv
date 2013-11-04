@@ -17,7 +17,7 @@ public class UgvDatabaseFactory {
 	@Inject
 	private transient Logger logger;
 	
-	@PersistenceUnit(name="sample")
+	@PersistenceUnit(name="ugv")
 	private EntityManagerFactory entityManagerFactory;
 
 	@Produces @UgvDatabase @RequestScoped
@@ -25,4 +25,5 @@ public class UgvDatabaseFactory {
 		logger.debug("Producing ugvDatabase EntityManager");
 		return entityManagerFactory.createEntityManager();
 	}
+	
 }

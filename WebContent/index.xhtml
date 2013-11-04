@@ -48,10 +48,9 @@ xmlns:p="http://primefaces.org/ui">
     <ui:remove>
 		<p:wizard >
 		</p:wizard>
-    </ui:remove>
     <f:view locale="#{language.locale}">
 		 <h:form id="languageForm">
-			 
+
 			<h:selectOneMenu value="#{language.language}" onchange="submit()">
                 <f:selectItem itemValue="en" itemLabel="English" />
                 <f:selectItem itemValue="ru" itemLabel="Russian" />
@@ -60,9 +59,10 @@ xmlns:p="http://primefaces.org/ui">
 
 		</h:form>
     </f:view>
+    </ui:remove>
 
 	<h:form id="mainForm">
-    <p:tabView id="tabId" dynamic="true"  effect="slide" widgetVar="myTab" effectDuration="fast">
+    <p:tabView id="tabId" dynamic="true" effect="slide" widgetVar="myTab" effectDuration="fast">
 			<p:tab title="Заявка">
 				<ui:include src="/zajavka.xhtml"/>
 			</p:tab>

@@ -38,15 +38,12 @@ public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<
 	 * 
 	 */
 	private static final long serialVersionUID = 9208010251414413491L;
-//	@PersistenceUnit(unitName="sample")
-//	protected EntityManagerFactory entityManagerFactory;
+
 	@Inject @UgvDatabase
-//	@PersistenceContext(name="sample",type=PersistenceContextType.TRANSACTION)
 	protected EntityManager entityManager;
 	protected Class<T> entityClass;
 	
-//	@Resource
-//    private UserTransaction userTransaction;
+
 	
 	@SuppressWarnings("unchecked")
 	public GenericDaoJpaImpl() {
@@ -139,6 +136,7 @@ public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<
 			predicates[i++] = cb.like(rootFrom.<String>get(entry.getKey()), literal);
 		}
 //		query.select(rootFrom);
+		Predicate predicate = cb.or(predicates);
 		query.where(predicates);
 		if (fieldName != null) {
 			query = query.orderBy(ascending ? cb.asc(rootFrom.get(fieldName)) : cb.desc(rootFrom.get(fieldName)));
@@ -190,8 +188,16 @@ public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<
 		return entityManager.createQuery(query).getSingleResult();
 		
 	}
-	
-	
 
-	
+    @Override
+    public List<T> getAll() throws Exception {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = cb.createQuery(entityClass);
+        Root<T> rootFrom = query.from(entityClass);
+        TypedQuery<T> entityQuery = entityManager.createQuery(query);
+        List<T> list = entityQuery.getResultList();
+        return list;
+    }
+
+
 }

@@ -11,9 +11,15 @@ xmlns:p="http://primefaces.org/ui">
        <h:body>
        
        <ui:composition>
-	       <h:form id="form9">  
+	       <h:form id="form9">
+               <div class="row-fluid pagination-centered">
+                    <h4>
+				        <h:outputFormat rendered="#{documentForm.kodOperacii}" value="#{documentForm.fullNameForm}"/>
+                    </h4>
+              </div>
 	          <div class="row-fluid">
 	          	<div class="span4">
+
 				        <h:graphicImage library="images" name="Text.png"/>
 	          	</div>
 	          	<div class="span8">
@@ -33,13 +39,19 @@ xmlns:p="http://primefaces.org/ui">
        		            <p:calendar id="dataDocumenta" value="#{document.documentDate}" rendered="#{documentForm.dataDocumenta}" />  
        		            
        		            <h:outputLabel id="kodPrichiniDocumentaLabel" for="kodPrichiniDocumenta" value="#{msgs.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  /> 
-       		            <p:inputText id="kodPrichiniDocumenta" value="#{document.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  />
+       		            <p:selectOneMenu id="kodPrichiniDocumenta" value="#{document.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  >
+                            <f:selectItems value="#{documentForm.prichiniList}"></f:selectItems>
+                        </p:selectOneMenu>
        		            
        		            <h:outputLabel id="depoDocumentaLabel" for="depoDocumenta" value="#{msgs.depoDocumenta}" rendered="#{documentForm.depoDocumenta}"  /> 
        		            <p:inputText id="depoDocumenta" value="#{document.depoDocumenta}" rendered="#{documentForm.depoDocumenta}"  />
        		            
+       
        		            <h:outputLabel id="stanciaDocumentaLabel" for="stanciaDocumenta" value="#{msgs.stanciaDocumenta}" rendered="#{documentForm.stanciaDocumenta}"  /> 
-       		            <p:inputText id="stanciaDocumenta" value="#{document.stanciaDocumenta}" rendered="#{documentForm.stanciaDocumenta}"  />
+       		            
+       		            <p:autoComplete id="stanciaDocumenta" value="#{document.stanciaDocumenta}" rendered="#{documentForm.stanciaDocumenta}"
+       		            			effect="blind" queryDelay="1000" completeMethod="#{documentForm.autoCompleteStations}"  />
+
        		            
        		            <h:outputLabel id="stanciaDislokaciiLabel" for="stanciaDislokacii" value="#{msgs.stanciaDislokacii}" rendered="#{documentForm.stanciaDislokacii}"  /> 
        		            <p:inputText id="stanciaDislokacii" value="#{document.stanciaDislokacii}" rendered="#{documentForm.stanciaDislokacii}"  />

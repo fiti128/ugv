@@ -23,7 +23,7 @@ import org.hibernate.annotations.CascadeType;
 @ManagedBean(name="operation")
 @ViewScoped
 @Entity
-@Table(name = "UCHET", schema="UGVSCH")
+@Table(name = "UCHET", schema="UGV")
 public class UgvOperation implements Serializable {
 
 	/**

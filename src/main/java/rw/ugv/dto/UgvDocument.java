@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name="DOC", schema="UGVSCH")
+@Table(name="DOC", schema="UGV")
 public class UgvDocument implements Serializable {
 	
 
@@ -87,7 +87,7 @@ public class UgvDocument implements Serializable {
 	/**
 	 * Код операции
 	 */
-	@Column(name = "KOD_PRICHINA")
+	@Column(name = "KOD_OP")
 	private String kodOperacii;
 	
 	/**

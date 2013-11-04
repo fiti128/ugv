@@ -1,6 +1,8 @@
 package rw.ugv.factories;
 
 
+
+
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
@@ -10,6 +12,9 @@ public class LoggerFactory {
 
 	@Produces
 	public Logger getLogger(InjectionPoint ip) {
-		return Logger.getLogger(ip.getMember().getDeclaringClass());
+//		Member member = ip.getMember();
+//		Class<?> myClass = member.getDeclaringClass();
+//		return Logger.getLogger(myClass);
+		return Logger.getLogger(this.getClass());
 	}
 }

@@ -18,7 +18,7 @@ import javax.validation.constraints.Max;
 @ManagedBean(name="techDetails")
 @ViewScoped
 @Entity
-@Table(name="VAGON", schema="UGVSCH")
+@Table(name="VAGON", schema="UGV")
 public class UgvTechnicalDetails implements Serializable {
 
 	private static final long serialVersionUID = 2539410460467753351L;
