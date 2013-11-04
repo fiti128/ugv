@@ -2,46 +2,42 @@ package rw.ugv.view;
 
 import java.io.Serializable;
 
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 import org.primefaces.model.LazyDataModel;
 
-import rw.ugv.dao.OperationDAO;
-import rw.ugv.dao.impl.OperationDaoJpaImpl;
 import rw.ugv.dto.UgvOperation;
+import rw.ugv.qualifiers.LazyOperationModel;
+import rw.ugv.qualifiers.Selected;
 
-@ManagedBean
-@ViewScoped
+
+@Named
+@RequestScoped
 public class OperationMB implements Serializable {
-	private static Logger logger = Logger.getLogger(OperationMB.class);
+	@Inject
+	private transient Logger logger;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3637216621138713877L;
-	private LazyDataModel<UgvOperation> operations = null;
+	@Inject @LazyOperationModel
+	private LazyDataModel<UgvOperation> operations;
 	private UgvOperation ugvOperation;
 	private LazyDataModel<UgvOperation> filteredOperations = null;
 
+
 	public LazyDataModel<UgvOperation> getOperations() {
+		logger.debug(String.format("Injecting logger with giving name %s",logger.getName()));
 		logger.debug("In OperationMB getOperations()");
-		if (operations == null) { 
-			OperationDAO operationDao = new OperationDaoJpaImpl();
-			operations = new LazyOperationList(operationDao); 
-		}
 		return operations;
 	}
-
-//	public LazyDataModel<UgvOperation> getOperations() {
-//		if (operations == null) {
-//			operations = new LazyOperationList();
-//		}
-//		return operations;
-//	}
+	@Produces @Selected
 	public UgvOperation getUgvOperation() {
-		System.err.println("In OperationMB getUgvOperation()");
+		logger.debug("In OperationMB getUgvOperation()");
 		if (ugvOperation == null) {
 			ugvOperation = new UgvOperation();
 		}
@@ -49,7 +45,7 @@ public class OperationMB implements Serializable {
 	}
 
 	public void setUgvOperation(UgvOperation ugvOperation) {
-		System.err.println("In OperationMB setUgvOperation()");
+		logger.debug("In OperationMB setUgvOperation()");
 		this.ugvOperation = ugvOperation;
 	}
 
@@ -62,10 +58,5 @@ public class OperationMB implements Serializable {
 	}
 
 
-
-
-	
-	
-	
 	
 }

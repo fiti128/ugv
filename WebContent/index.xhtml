@@ -48,9 +48,21 @@ xmlns:p="http://primefaces.org/ui">
     <ui:remove>
 		<p:wizard >
 		</p:wizard>
+    <f:view locale="#{language.locale}">
+		 <h:form id="languageForm">
+
+			<h:selectOneMenu value="#{language.language}" onchange="submit()">
+                <f:selectItem itemValue="en" itemLabel="English" />
+                <f:selectItem itemValue="ru" itemLabel="Russian" />
+            </h:selectOneMenu>
+ 			<p><h:outputText value="#{msgs.footer}"/></p>
+
+		</h:form>
+    </f:view>
     </ui:remove>
+
 	<h:form id="mainForm">
-    <p:tabView id="tabId" dynamic="true"  effect="slide" widgetVar="myTab" effectDuration="fast">
+    <p:tabView id="tabId" dynamic="true" effect="slide" widgetVar="myTab" effectDuration="fast">
 			<p:tab title="Заявка">
 				<ui:include src="/zajavka.xhtml"/>
 			</p:tab>
@@ -60,86 +72,18 @@ xmlns:p="http://primefaces.org/ui">
 			<p:tab title="Технические характиристики">
 				<ui:include src="/techDetails.xhtml"/>
 			</p:tab>
-			<p:tab title="Список операций">
-			<div class="row-fluid">
-				<div class="span6">
-			 <h:form id="operationTableId">
-				 <p:dataTable id="lazyOperations" value="#{operationMB.operations}" var="myOperation" 
-				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
-				 	selection="#{operationMB.ugvOperation}" selectionMode="single" 
-				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
-				 	rowsPerPageTemplate="5,10"
-				 	sortBy="#{myOperation.id}" filteredValue="#{operationMB.filteredOperations}" >
-				 	
-					<p:ajax event="rowSelect" update=":mainForm:tabId:myDialog" oncomplete="operationDetails.show()" />
-	                <p:column sortBy="#{myOperation.id}">
-	                    <f:facet name="header">ID</f:facet>
-	                    <h:outputText value="#{myOperation.id}" />
-	                </p:column>
-	                <p:column filterBy="#{myOperation.wagonNumber}" sortBy="#{myOperation.wagonNumber}">
-	                    <f:facet name="header">Номер вагона</f:facet>
-	                    <h:outputText value="#{myOperation.wagonNumber}" />
-	                </p:column>
-	                <p:column filterBy="#{myOperation.priznakZapisi}" sortBy="#{myOperation.priznakZapisi}">
-	                    <f:facet name="header">Признак состояния записи</f:facet>
-	                    <h:outputText value="#{myOperation.priznakZapisi}" />
-	                </p:column>
-				 	
-				 </p:dataTable>
-			 </h:form>
-				</div>
-				
-				
-				<div class="span6">
-			 <h:form id="operationTableId2">
-				 <p:dataTable id="lazyOperations2" value="#{operationMB.operations}" var="myOperation" 
-				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
-				 	selection="#{operationMB.ugvOperation}" selectionMode="single" 
-				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
-				 	rowsPerPageTemplate="5,10"
-				 	sortBy="#{myOperation.id}" filteredValue="#{operationMB.filteredOperations}" >
-				 	
-					<p:ajax event="rowSelect" update=":mainForm:tabId:myDialog" oncomplete="operationDetails.show()" />
-	                <p:column sortBy="#{myOperation.id}">
-	                    <f:facet name="header">ID</f:facet>
-	                    <h:outputText value="#{myOperation.id}" />
-	                </p:column>
-	                <p:column filterBy="#{myOperation.wagonNumber}" sortBy="#{myOperation.wagonNumber}">
-	                    <f:facet name="header">Номер вагона</f:facet>
-	                    <h:outputText value="#{myOperation.wagonNumber}" />
-	                </p:column>
-	                <p:column filterBy="#{myOperation.priznakZapisi}" sortBy="#{myOperation.priznakZapisi}">
-	                    <f:facet name="header">Признак состояния записи</f:facet>
-	                    <h:outputText value="#{myOperation.priznakZapisi}" />
-	                </p:column>
-				 	
-				 </p:dataTable>
-			 </h:form>
-				</div>
-			</div>
-			 
-			<p:dialog id="myDialog" widgetVar="operationDetails" header="Operation" modal="true">
-            <h:form id="operationDialogForm">
-                <h:panelGrid columns="2">
-                    <h:outputText value="Id: " />
-                    <h:outputText value="#{operationMB.ugvOperation.id}" />
-                    
-                    <h:outputText value="Номер вагона: " />
-                    <h:outputText value="#{operationMB.ugvOperation.wagonNumber}" />
-                    
-                    <h:outputText value="Признак состояния записи: " />
-                    <h:outputText value="#{operationMB.ugvOperation.priznakZapisi}" />
-                </h:panelGrid>
-            </h:form>
-        </p:dialog>
-			 
-			</p:tab>
+			<p:tab title="Все операции">
+				<ui:include src="/operationsTable.xhtml"/>
+			 </p:tab>
+			 <p:tab title="Документы">
+			 	<ui:include src="/documentsTable.xhtml"/>
+			 </p:tab>
     </p:tabView>
 		<p:remoteCommand onstart="heyho"></p:remoteCommand>
 	</h:form>
 		</ui:define>
 	</ui:composition>
-	
+
         </h:body>
 
     </f:view>

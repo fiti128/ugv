@@ -60,7 +60,8 @@ xmlns:p="http://primefaces.org/ui">
 						<p:menuitem value="#{msgs.newFicha}" icon="/resources/images/Documents_Black.png" onclick="dgd.show()"/>
 					</p:dock>
 				</h:form>
-					
+					<ui:remove>
+
 					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogDoc" header="#{msgs.newDoc}" widgetVar="dgd">
 					   <ui:include src="/document.xhtml"/>
 					</p:dialog>
@@ -70,6 +71,7 @@ xmlns:p="http://primefaces.org/ui">
 					<p:dialog hideEffect="drop" showEffect="clip" dynamic="true"  minimizable="true" resizable="false" height="400" id="dialogTechDetails" header="#{msgs.newZajavka}" widgetVar="techDetails">
 					   <ui:include src="/techDetails.xhtml"/>
 					</p:dialog>
+					</ui:remove>
 			</ui:insert>
 
         	<div id="loading" class="pull-right navbar-fixed-bottom">

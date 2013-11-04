@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Transient;
 
@@ -18,35 +21,89 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import rw.ugv.dao.StationsDAO;
+import rw.ugv.dto.SpFormDoc;
+import rw.ugv.dto.Stations;
+import rw.ugv.dto.UgvPrichinaDoc;
+import rw.ugv.qualifiers.FormKod;
+import rw.ugv.qualifiers.UgvForm;
 
-@ManagedBean
-@ViewScoped
+
+@Named
+@SessionScoped
 public class DocumentForm implements Serializable {
+	@Inject
+	private StationsDAO stationsDao;
 	
-	/**
-	 * 
-	 */
+	@Inject @UgvForm
+	private List<UgvPrichinaDoc> prichinaDocList;
+    @Inject @UgvForm
+    private List<SpFormDoc> spFormDocList;
 	private static final long serialVersionUID = 1203352608230766258L;
 	private Map<String,Map<String,Boolean>> map = new HashMap<String,Map<String,Boolean>> ();
+	private List<String> formList;
+	private List<String> prichiniList;
 	
 	@Column(name = "FORM")
 	private String form;
+	
+	
+	private String kodForm;
+	
+	@Produces @FormKod
+	public String getKodForm() {
+		return kodForm;
+	}
+	
+    private String fullNameForm="horosh";
 
 	public void handleFormChanged(String form) {
 		this.form = form;
 		if (this.form != null && this.form != "") {
-		Map<String,Boolean> rendList = map.get(form);
-		documentNumber = rendList.get("documentNumber");
-		dataDocumenta = rendList.get("dataDocumenta");
-		kodPrichiniDocumenta = rendList.get("kodPrichiniDocumenta");
-		depoDocumenta = rendList.get("depoDocumenta");
-		stanciaDocumenta = rendList.get("stanciaDocumenta");
-		stanciaDislokacii = rendList.get("stanciaDislokacii");
-		kodOperacii = rendList.get("kodOperacii");
+		SpFormDoc spFormDoc = spFormDocList.get(0);
+		
+            for (SpFormDoc formDoc : spFormDocList) {
+            	 if (formDoc.getShortNameForm().trim().equals(form.trim())){
+                    spFormDoc = formDoc;
+                    break;
+                }
+            }
+
+        documentNumber = intToBool(spFormDoc.getPrNomeraDocumenta());
+        dataDocumenta = intToBool(spFormDoc.getPrDataDoc());
+        kodPrichiniDocumenta = intToBool(spFormDoc.getPrPrichini());
+        depoDocumenta = intToBool(spFormDoc.getPrDepoDoc());
+        stanciaDocumenta = intToBool(spFormDoc.getPrStDoc());
+        stanciaDislokacii = intToBool(spFormDoc.getPrStDislocacii());
+        fullNameForm = spFormDoc.getFullNameForm();
+        kodForm = spFormDoc.getKodForm();
+        kodOperacii = true;
+        if(kodPrichiniDocumenta) {
+        	prichiniList = new ArrayList<String>();
+        	for (UgvPrichinaDoc prichinaDoc : prichinaDocList) {
+				prichiniList.add(prichinaDoc.getFullName().trim());
+			}
+        }
 		}
 	}
+	
+	public List<String> autoCompleteStations(String filter) throws Exception {
+		Map<String,String> filters = new HashMap<String,String>();
+		filters.put("stationName", filter);
+		filters.put("stationNumber", filter);
+		List<Stations> list = stationsDao.pagination(0, 10, null, false, filters);
+		List<String> autoCompleteList = new ArrayList<String>();
+		for (Stations station : list) {
+			autoCompleteList.add(String.format("%s, %s",station.getStationNumber(),station.getStationName()));
+		}
+		return autoCompleteList;
+	}
 	public List<String> getFormList(){
-		return new ArrayList<String>(map.keySet());
+		return formList;
+	}
+	
+	public List<String> getPrichiniList() {
+		return prichiniList;
 	}
 	@Transient
 	private boolean documentNumber=false;
@@ -62,7 +119,8 @@ public class DocumentForm implements Serializable {
 	private boolean stanciaDislokacii;
 	@Transient
 	private boolean kodOperacii;
-	
+
+
 	@SuppressWarnings("unchecked")
 	@PostConstruct
 	protected void init()  {
@@ -81,13 +139,43 @@ public class DocumentForm implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		formList = new ArrayList<String>();
+        for (SpFormDoc spFormDoc : spFormDocList) {
+            formList.add(spFormDoc.getShortNameForm());
+        }
+
 	}
 	
 	public DocumentForm()  {
 	}
-	
-	
-	public Map<String, Map<String, Boolean>> getMap() {
+    public static boolean intToBool(int input)
+    {
+        if (input < 0 || input > 1)
+        {
+            throw new UnsupportedOperationException();
+        }
+
+        // Note we designate 1 as true and 0 as false though some may disagree
+        return input == 1;
+    }
+
+    public String getFullNameForm() {
+        return fullNameForm;
+    }
+
+    public void setFullNameForm(String fullNameForm) {
+        this.fullNameForm = fullNameForm;
+    }
+
+    public List<SpFormDoc> getSpFormDocList() {
+        return spFormDocList;
+    }
+
+    public void setSpFormDocList(List<SpFormDoc> spFormDocList) {
+        this.spFormDocList = spFormDocList;
+    }
+
+    public Map<String, Map<String, Boolean>> getMap() {
 		return map;
 	}
 	public void setMap(Map<String, Map<String, Boolean>> map) {

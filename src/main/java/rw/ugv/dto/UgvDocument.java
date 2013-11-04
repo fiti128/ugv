@@ -2,21 +2,24 @@ package rw.ugv.dto;
 
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@ManagedBean(name="document")
-@ViewScoped
+
+/**
+ * @author ircm_yanusheusky
+ *
+ */
 @Entity
-@Table(name="DOC", schema="UGVSCH")
+@Table(name="DOC", schema="UGV")
 public class UgvDocument implements Serializable {
 	
 
@@ -33,64 +36,74 @@ public class UgvDocument implements Serializable {
 	 */
 	@Id
 	@Temporal( value = TemporalType.TIMESTAMP ) 
-	@Column(name = "DOC_ID", nullable = false, updatable = false) 
+	@Column(name = "ID_DOC", nullable = false, updatable = false) 
     private Date id;
+	
+	@OneToMany(mappedBy = "ugvDocId")
+	private List<UgvOperation> operationList;
 	
 	/**
 	 * Форма документа
 	 */
-	@Column(name = "FORM")
+	@Column(name = "FORM_DOC")
 	private String form;
 	
 	/**
 	 * Номер документа
 	 */
-	@Column(name = "N_DOC")
+	@Column(name = "NUM_DOC")
 	private String documentNumber;
 	
 	/**
 	 * Дата составления документа
 	 */
-	@Column(name = "D_DOC")
-	private Calendar documentDate;
+	@Column(name = "DATA_DOC")
+	private Date documentDate;
 
 	/**
 	 * Код причины составления документа
 	 */
-	@Column(name = "KD_PRID")
+	@Column(name = "KOD_PRICHINA")
 	private String kodPrichiniDocumenta;
 
 	/**
 	 * Депо составитель документа
 	 */
-	@Column(name = "DEPOS")
+	@Column(name = "DEPO_DOC")
 	private String depoDocumenta;
 
 	/**
 	 * Станция составитель документа
 	 */
-	@Column(name = "STA")
+	@Column(name = "ST_DOC")
 	private String stanciaDocumenta;
 
 	/**
 	 * Станция дислокации
 	 */
-	@Column(name = "STDISL")
+	@Column(name = "ST_DISLOKACII")
 	private String stanciaDislokacii;
 
 	/**
 	 * Код операции
 	 */
-	@Column(name = "KOP")
+	@Column(name = "KOD_OP")
 	private String kodOperacii;
+	
+	/**
+	 * Статус документа
+	 */
+	@Column(name = "STATUS_DOC")
+	private String statusDoc;
 
-	public Date getCreatingTime() {
+
+
+	public Date getId() {
 		return id;
 	}
-	public void setCreatingTime(Date creatingTime) {
-		this.id = creatingTime;
+	public void setId(Date id) {
+		this.id = id;
 	}
-
 	public String getKodPrichiniDocumenta() {
 		return kodPrichiniDocumenta;
 	}
@@ -133,12 +146,34 @@ public class UgvDocument implements Serializable {
 	public void setDocumentNumber(String documentNumber) {
 		this.documentNumber = documentNumber;
 	}
-	public Calendar getDocumentDate() {
+	public Date getDocumentDate() {
 		return documentDate;
 	}
-	public void setDocumentDate(Calendar documentDate) {
+	public void setDocumentDate(Date documentDate) {
 		this.documentDate = documentDate;
 	}
+	
+	
+	public List<UgvOperation> getOperationList() {
+		return operationList;
+	}
+	public void setOperationList(List<UgvOperation> operationList) {
+		this.operationList = operationList;
+	}
+	
+	
+	public String getStatusDoc() {
+		return statusDoc;
+	}
+	public void setStatusDoc(String statusDoc) {
+		this.statusDoc = statusDoc;
+	}
+	@Override
+	public String toString() {
+		return "UgvDocument [id=" + id + ", form=" + form + ", documentNumber="
+				+ documentNumber + "]";
+	}
+	
 	
 	
 	

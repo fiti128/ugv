@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 @ManagedBean(name="zajavka")
 @ViewScoped
 @Entity
-@Table(name = "ZAJAV", schema="UGVSCH")
+@Table(name = "ZAJAV", schema="UGV")
 public class UgvZajavka implements Serializable {
 
 	private static final long serialVersionUID = 8111608703615462876L;
@@ -27,42 +27,49 @@ public class UgvZajavka implements Serializable {
 	
 	@Id
 	@Temporal( value = TemporalType.TIMESTAMP ) 
-	@Column (name = "ZAJAV_ID", nullable = false, updatable = false)
+	@Column (name = "ID_ZAJAV", nullable = false, updatable = false)
 	private Date id;
 	
 	/**
 	 * Форма заявки
 	 */
-	@Column(name = "FORMA")
+	@Column(name = "FORM_ZAJAV")
 	private String zajavkaForm;
 	
 	/**
 	 * Номер заявки
 	 */
-	@Column(name = "NZ")
+	@Column(name = "NUM_ZAJAV")
 	private String zajavkaNomer;
 	
 	/**
 	 * Дата составления заявки
 	 */
-	@Column(name = "DZ")
+	@Column(name = "DATA_ZAJAV")
 	private Calendar zajavkaDate;
 
 	/**
 	 * Код причины составления заявки
 	 */
-	@Column(name = "KD_PRIZ")
+	@Column(name = "KOD_PRICHINA_ZAJAV")
 	private String kodPrichiniZajavki;
 
 	/**
 	 * Код операции 
 	 */
-	@Column(name = "KOP")
+	@Column(name = "KOD_OP")
 	private String kodOperacii;
+	
+	/**
+	 * Код операции 
+	 */
+	@Column(name = "STATUS_ZAJAV")
+	private String statusZajavki;
+
+	
 	public Date getId() {
 		return id;
 	}
-
 	public void setId(Date id) {
 		this.id = id;
 	}
@@ -108,6 +115,17 @@ public class UgvZajavka implements Serializable {
 	public void setKodOperacii(String kodOperacii) {
 		this.kodOperacii = kodOperacii;
 	}
-
+	public String getStatusZajavki() {
+		return statusZajavki;
+	}
+	public void setStatusZajavki(String statusZajavki) {
+		this.statusZajavki = statusZajavki;
+	}
+	@Override
+	public String toString() {
+		return "UgvZajavka [zajavkaForm=" + zajavkaForm + ", zajavkaNomer="
+				+ zajavkaNomer + ", zajavkaDate=" + zajavkaDate + "]";
+	}
+	
 	
 }

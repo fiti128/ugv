@@ -1,16 +1,18 @@
-package rw.ugv.view;
+package rw.ugv.primefaces.models;
 
-
-import java.sql.Date;
+import java.io.Serializable;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModelListener;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.apache.log4j.Logger;
 import org.primefaces.model.LazyDataModel;
@@ -18,20 +20,31 @@ import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import rw.ugv.dao.OperationDAO;
+import rw.ugv.dto.UgvDocument;
 import rw.ugv.dto.UgvOperation;
+import rw.ugv.qualifiers.LazyOperationModel;
+import rw.ugv.qualifiers.Selected;
 
-public class LazyOperationList extends LazyDataModel<UgvOperation> {
-	public static Logger logger = Logger.getLogger(LazyOperationList.class);
+@Named(value="operations")
+@SessionScoped @LazyOperationModel
+public class OperationModel extends LazyDataModel<UgvOperation> implements Serializable {
+	public static Logger logger = Logger.getLogger(OperationModel.class);
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 411283559847593822L;
 	
-	public LazyOperationList(OperationDAO operationDao) {
-		this.operationDao = operationDao;
-	}
-//	@Inject
+
+	@Inject
 	OperationDAO operationDao;
+	
+	@Inject @Selected
+	UgvDocument ugvDocument;
+	
+	@PostConstruct
+	public void testDao() {
+		logger.error("Dao = " + operationDao);
+	}
 	
 	List<UgvOperation> list;
 	
@@ -40,6 +53,7 @@ public class LazyOperationList extends LazyDataModel<UgvOperation> {
 			SortOrder sortOrder, Map<String, String> filters) {
 		
 		System.err.println("in LazyOperationModel load()");
+		System.err.println(ugvDocument);
 		Set<String> keys = filters.keySet();
 		for (String string : keys) {
 			logger.fatal(string);
@@ -54,19 +68,32 @@ public class LazyOperationList extends LazyDataModel<UgvOperation> {
 		}
 		boolean ascending = (sortOrder == SortOrder.ASCENDING) ? true : false;
 		
-		list = operationDao.pagination(first, pageSize, sortField, ascending, filters);
-		for (UgvOperation ugvOperation : list) {
-			logger.debug(ugvOperation);
+		try {
+			long rowCount = 0;
+			if (ugvDocument.getForm() == null) {
+				list = operationDao.pagination(first, pageSize, sortField, ascending, filters);
+				rowCount = operationDao.rowsNumber(sortField,filters);
+			}
+			else{
+				list = operationDao.docDependentPagination(ugvDocument,first, pageSize, sortField, ascending, filters);
+				rowCount = operationDao.rowsNumber(ugvDocument,sortField,filters);
+			}
+			for (UgvOperation ugvOperation : list) {
+				logger.debug(ugvOperation);
+			}
+
+			int rowCountInt = (int) ((rowCount < Integer.MAX_VALUE)
+				? rowCount : Integer.MAX_VALUE);
+			if (rowCountInt == Integer.MAX_VALUE) {
+				logger.error(String.format("There are too much rows for the table. First %d will be taken", Integer.MAX_VALUE));
+			}
+			logger.debug(String.format("Number of rows = %d", rowCountInt));
+			setRowCount(rowCountInt);
+			setPageSize(pageSize);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		long rowCount = operationDao.rowsNumber();
-		int rowCountInt = (int) ((rowCount < Integer.MAX_VALUE)
-			? rowCount : Integer.MAX_VALUE);
-		if (rowCountInt == Integer.MAX_VALUE) {
-			logger.error(String.format("There are too much rows for the table. First %d will be taken", Integer.MAX_VALUE));
-		}
-		logger.debug(String.format("Number of rows = %d", rowCountInt));
-		setRowCount(rowCountInt);
-		setPageSize(pageSize);
 		return list;
 	}
 

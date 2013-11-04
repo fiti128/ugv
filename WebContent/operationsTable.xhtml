@@ -1,0 +1,96 @@
+<!DOCTYPE html>  
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+    <f:view contentType="text/html">
+        <h:head>
+        	<title>IGNORED</title>
+        </h:head>
+       <h:body>
+       
+       <ui:composition>
+	       <div class="row-fluid">
+				<div class="span6">
+			 <h:form id="operationTableId">
+				 <p:dataTable id="lazyOperations" value="#{operationMB.operations}" var="myOperation" 
+				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
+				 	selection="#{operationMB.ugvOperation}" selectionMode="single" 
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				 	rowsPerPageTemplate="5,10"
+				 	sortBy="#{myOperation.id}" filteredValue="#{operationMB.filteredOperations}" >
+				 	
+					<p:ajax event="rowSelect" update=":mainForm:tabId:myDialog" oncomplete="operationDetails.show()" />
+	                <p:column sortBy="#{myOperation.id}">
+	                    <f:facet name="header">ID</f:facet>
+	                    <h:outputText value="#{myOperation.id}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.wagonNumber}" sortBy="#{myOperation.wagonNumber}">
+	                    <f:facet name="header">Номер вагона</f:facet>
+	                    <h:outputText value="#{myOperation.wagonNumber}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.priznakZapisi}" sortBy="#{myOperation.priznakZapisi}">
+	                    <f:facet name="header">Признак состояния записи</f:facet>
+	                    <h:outputText value="#{myOperation.priznakZapisi}" />
+	                </p:column>
+				 	
+				 </p:dataTable>
+			 </h:form>
+				</div>
+					<div class="span6">
+			 <h:form id="operationTableId2">
+			 	  <p:dataTable id="lazyOperations2" value="#{operationMB.operations}" var="myOperation" 
+				 	paginator="true" rows="10" lazy="true"  paginatorPosition="top" 
+				 	selection="#{operationMB.ugvOperation}" selectionMode="single" 
+				 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+				 	rowsPerPageTemplate="5,10"
+				 	sortBy="#{myOperation.id}" filteredValue="#{operationMB.filteredOperations}" >
+				 	
+					<p:ajax event="rowSelect" update=":mainForm:tabId:myDialog" oncomplete="operationDetails.show()" />
+	                <p:column sortBy="#{myOperation.id}">
+	                    <f:facet name="header">ID</f:facet>
+	                    <h:outputText value="#{myOperation.id}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.wagonNumber}" sortBy="#{myOperation.wagonNumber}">
+	                    <f:facet name="header">Номер вагона</f:facet>
+	                    <h:outputText value="#{myOperation.wagonNumber}" />
+	                </p:column>
+	                <p:column filterBy="#{myOperation.priznakZapisi}" sortBy="#{myOperation.priznakZapisi}">
+	                    <f:facet name="header">Признак состояния записи</f:facet>
+	                    <h:outputText value="#{myOperation.priznakZapisi}" />
+	                </p:column>
+				 	
+				 </p:dataTable>
+			 </h:form>
+			 	<p:commandButton onclick="#{main.changeToEng()}" value="eng"/>
+				<p:commandButton action="#{main.sayHiToConsole()}" value="say"/>
+				<p:commandButton onclick="#{main.changeToRus()}" value="rus"/>
+				<p:button ajax="#{main.changeToEng()}" value="eng"/>
+				<p:button action="#{main.sayHiToConsole()}" value="say"/>
+				<p:button onclick="#{main.changeToRus()}" value="rus"/>
+				</div>
+			</div>
+			 
+			<p:dialog id="myDialog" widgetVar="operationDetails" header="Operation" modal="true">
+            <h:form id="operationDialogForm">
+                <h:panelGrid columns="2">
+                    <h:outputText value="Id: " />
+                    <h:outputText value="#{operationMB.ugvOperation.id}" />
+                    
+                    <h:outputText value="Номер вагона: " />
+                    <h:outputText value="#{operationMB.ugvOperation.wagonNumber}" />
+                    
+                    <h:outputText value="Признак состояния записи: " />
+                    <h:outputText value="#{operationMB.ugvOperation.priznakZapisi}" />
+                </h:panelGrid>
+            </h:form>
+        </p:dialog>
+       </ui:composition>
+       
+       
+         </h:body>
+		
+
+    </f:view>
+</html>

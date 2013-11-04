@@ -18,7 +18,7 @@ import javax.validation.constraints.Max;
 @ManagedBean(name="techDetails")
 @ViewScoped
 @Entity
-@Table(name="VGT", schema="UGVSCH")
+@Table(name="VAGON", schema="UGV")
 public class UgvTechnicalDetails implements Serializable {
 
 	private static final long serialVersionUID = 2539410460467753351L;
@@ -31,7 +31,7 @@ public class UgvTechnicalDetails implements Serializable {
 	}
 	@Id
 	@Temporal( value = TemporalType.TIMESTAMP ) 
-	@Column(name = "TEX_ID", nullable = false, updatable = false) 
+	@Column(name = "ID_VAGON", nullable = false, updatable = false) 
     private Date id;
 	
 	/**  
@@ -41,27 +41,28 @@ public class UgvTechnicalDetails implements Serializable {
 	private String wagonNumber;
 	
 	/**  
+	 *  Дата постройки
+	 */
+	@Column(name = "DATA_POSTROIKI")
+	private String dataPostroiki;
+	
+	/**  
 	 *  Код железнодорожной администрации
 	 */
-	@Column(name = "ZD_ADM")
+	@Column(name = "KOD_GD_ADMINISTRACII")
 	private String kodDorozhAdministr;
 		
-	/** 
-	 * 	Код организации-собственницы
-	 */
-	@Column(name = "K_SOBSTV")
-	private String kodSobstv;
 	
 	/** 
 	 * 	Дорога приписки вагона
 	 */
-	@Column(name = "DORPRIP")
+	@Column(name = "DOR_PRIPISKI_VAG")
 	private String dorogaPripiski;
 		
 	/** 
 	 * 	Станция приписки вагона
 	 */
-	@Column(name = "STPRIP")
+	@Column(name = "ST_PRIPISKI_VAG")
 	private String stanciaPripiski;
 	
 	/** 
@@ -73,187 +74,176 @@ public class UgvTechnicalDetails implements Serializable {
 	/** 
 	 * 	Код завода постройки
 	 */
-	@Column(name = "KD_ZAVOD")
+	@Column(name = "KOD_ZAVOD_POSTROIKI")
 	private String kodZavoda;
 	
 	/** 
 	 * 	Заводской номер постройки
 	 */
-	@Column(name = "ZAVNVAG")
+	@Column(name = "ZAVOD_NV")
 	private String zavNomerWagona;
 	
 	/** 
 	 * 	Тип вагона расчетный
 	 */
-	@Column(name = "TIPVAG")
+	@Column(name = "TIP_VAG_RASCHETNYI")
 	private String tipWagona;
 	
 	/** 
 	 * 	Тип вагона из документа
 	 */
-	@Column(name = "TIPVAGDOC")
+	@Column(name = "TIP_VAG_DOC")
 	private String tipWagonaIzDoc;
 	
 	/**  
 	 *  Идентификационный номер модели
 	 */
-	@Column(name = "IDMOD")
+	@Column(name = "ID_MODEL")
 	private String idModeliWagona;
 	
 	/** 
 	 *   Модель вагона из паспорта
 	 */
-	@Column(name = "MOD")
+	@Column(name = "MODEL")
 	private String modelWagonaIzPasporta;
 	
 	/** 
 	 * 	Модель вагона из справочника
 	 */
-	@Column(name = "MODSPRAV")
+	@Column(name = "MODEL_SPRAVOCHN")
 	private String modelWagonaIzSpravochnika;
 	
 	/**  
 	 * 	Технические условия
 	 */
-	@Column(name = "TEHUSL")
+	@Column(name = "TEHNICH_USLOVIE")
 	private String techUslovia;
 	
 	/** 
 	 * 	Тара вагона
 	 */
-	@Column(name = "TARA")
+	@Column(name = "TARA_VAG")
 	private String taraWagona;
-	
-	/** 
-	 *   Тара вагона по трафорету
-	 */
-	@Column(name = "TARA_TR")
-	private String taraWagonaPoTraforetu;
 	
 	/** 
 	 *   Грузоподъемность
 	 */
-	@Column(name = "GRPD")
+	@Column(name = "GRUZOPOD")
 	private String gruzopodjemnost;
 	
-	/** 
-	 *   Грузоподъемность по трафарету
-	 */
-	@Column(name = "GRPD_TR")
-	private String gruzopodjemnostPoTraforetu;
 	
 	/** 
 	 * 	Длина по осям автоцепок
 	 */
-	@Column(name = "DLAVSC")
+	@Column(name = "DLINA_AVTOSCEP")
 	private String dlinaPoOsiamAvtocepok;
 	
 	/** 
 	 *  	Габарит
 	 */
 	@Max(value=1)
-	@Column(name = "GABAR")
+	@Column(name = "GABARIT")
 	private String gabarit;
 	
 	/** 
 	 * 	Материал обшивки кузова
 	 */
-	@Column(name = "MATOBKUZ")
+	@Column(name = "MATERIAL_OBSHIV_KUZOV")
 	private String materialObshivkiKuzova;
 	
 	/** 
 	 * 	Тип воздухораспределителя
 	 */
 	@Max(value=1)
-	@Column(name = "TIPRASPR")
+	@Column(name = "TIP_VOZDUHRASPRED")
 	private String tipVozduharaspr;
 	
 	/** 
 	 * 	Авторегулятор рычажной передачи
 	 */
 	@Max(value=1)
-	@Column(name = "ARRP")
+	@Column(name = "AUTOREGUL_PEREDACHA")
 	private String avtoregulRychazchPeredachi;
 	
 	/** 
 	 * 	Рычажная передача
 	 */
 	@Max(value=1)
-	@Column(name = "RP")
+	@Column(name = "PEREDACHA")
 	private String ruchazchnPeredacha;
 		
 	/** 
 	 * 	Авторежим
 	 */
 	@Max(value=1)
-	@Column(name = "AVREJ")
+	@Column(name = "AUTOREGIM")
 	private String avtorezchim;
 	
 	/** 
 	 * 	Ручной тормоз
 	 */
 	@Max(value=1)
-	@Column(name = "RUTOR")
+	@Column(name = "TORMOZ")
 	private String ruchnTormoz;
 	
 	/** 
 	 * 	Тип автосцепки
 	 */
 	@Max(value=1)
-	@Column(name = "TIPAVSC")
+	@Column(name = "TIP_AVTOSCEP")
 	private String tipAvtoscepki;
 	
 	/** 
 	 * 	Тип поглащающего аппарата
 	 */
-	@Column(name = "TIPPOGAR")
+	@Column(name = "TIP_APPARAT")
 	private String tipPoglAparata;
 	
 	/** 
 	 * 	Возможность постановки буферов
 	 */
 	@Max(value=1)
-	@Column(name = "PRBUF")
+	@Column(name = "BUFFER")
 	private String vozmozchnPostanovkiBuferov;
 	
 	/** 
 	 * 	Модель тележек
 	 */
-	@Column(name = "MODTEL")
+	@Column(name = "MODEL_TELEG")
 	private String modelTelezchek;
 	
 	/** 
 	 * 	Подпольные усиливающие балочки
 	 */
 	@Max(value=1)
-	@Column(name = "PRUSBAL")
+	@Column(name = "USIL_BALOCHKI")
 	private String podpolUsilBalki;
 	
 	/** 
 	 * 	Калибровка котла цистерны
 	 */
-	@Column(name = "KALKOTL")
+	@Column(name = "KALIBROVKA_KOTLA_CISTERNI")
 	private String kalibrovkaKotla;
 	
 	/** 
 	 * 	Наличие сливного прибора
 	 */
 	@Max(value=1)
-	@Column(name = "PRSLIVPR")
+	@Column(name = "SLIVNOI_PRIBOR")
 	private String slivnPribor;
 	
 	/** 
 	 * 	Наличие рамы
 	 */
 	@Max(value=1)
-	@Column(name = "PRRAM")
+	@Column(name = "RAMA")
 	private String rama;
 	
 	/** 
 	 * 	Конструкция котла
 	 */
 	@Max(value=1)
-	@Column(name = "KD_KOTL")
+	@Column(name = "KONSTRUKCIA_KOTLA")
 	private String konstrKotla;
 	
 	/** 
@@ -272,230 +262,236 @@ public class UgvTechnicalDetails implements Serializable {
 	 * 	Продлен ли срок службы 
 	 */
 	@Max(value=1)
-	@Column(name = "PRPRODSR")
+	@Column(name = "SROK_SLUGB_PRODLEN")
 	private String prodlenSrokSlyzchbiWagona;
 	
 	
 	/** 
 	 * 	Дата продления срока службы вагона
 	 */
-	@Column(name = "D_PRODSR")
+	@Column(name = "DATA_SROK_SLUGB_PRODLEN")
 	private Calendar dataProdlenSrokSlyzchbiWagona;
 	
 	/** 
 	 * 	Документ на продление срока службы
 	 */
-	@Column(name = "DOC_PRODSR")
+	@Column(name = "DOC_SROK_SLUGB_PRODLEN")
 	private String documentProdlenSrokSlyzchbi;
 	
 	/** 
 	 * 	Дата документа на продление срока службы
 	 */
-	@Column(name = "DDOC_PRODSR")
+	@Column(name = "DATA_DOC_SROK_SLUGB")
 	private Calendar dataDocumentaProdlenSrokSlyzchbi;
 	
 	/** 
 	 * 	Переведен на ремонт по пробегу
 	 */
 	@Max(value=1)
-	@Column(name = "PR_REM")
+	@Column(name = "REMONT_PROBEG")
 	private String perevedenNaRemontPoProbegu;
 	
 	/**
 	 * 	Дата перевода на ремонт по пробегу
 	 */
-	@Column(name = "D_PERREM")
+	@Column(name = "DATA_REMONT_PROBEG")
 	private Calendar dataPerevedaNaRemontPoProbegu;
 	
 	/** 
 	 *  Документ перевода на ремонт по пробегу
 	 */
-	@Column(name = "DOC_PERREM")
+	@Column(name = "DOC_REMONT_PROBEG")
 	private String documentPerevedaNaRemontPoProbegu;
 	
 	/** 
 	 * 	Дата документа перевода на ремонт по пробегу
 	 */
-	@Column(name = "DDOC_PERREM")
+	@Column(name = "DATA_DOC_REMONT")
 	private Calendar dataDocumentaPerevedaNaRemontPoProbegu;
 	
 	/**
 	 * 	Документ на изменение года постройки
 	 */
-	@Column(name = "DOC_POSTR")
+	@Column(name = "DOC_GOD_POSTROIKI")
 	private String documentNaIzmenenieGodaPostroiki;
 	
 	/** 
 	 *  Дата документа на изменение года постройки
 	 */
-	@Column(name = "DDOC_POSTR")
+	@Column(name = "DATA_DOC_POSTROIKI")
 	private Calendar dataDocumentaNaIzmenenieGodaPostroiki;
 	
 	/** 
 	 * 	Дата последнего капитального ремонта
 	 */
-	@Column(name = "D_REMK")
+	@Column(name = "DATA_REMKAP")
 	private Calendar dataKapitalnogoPoslRemonta;
 	
 	/** 
 	 * 	Код завода или депо последнего капремонта
 	 */
-	@Column(name = "KD_ZAVREMK")
+	@Column(name = "KOD_ZAVOD_REMKAP")
 	private String kodZavodaKapitalnogoPoslRemonta;
 	
 	/** 
 	 * 	Дата последнего деповского ремонта
 	 */
-	@Column(name = "D_REMD")
+	@Column(name = "DATA_REMONT")
 	private Calendar dataDepoPoslRemonta;
 	
 	/** 
 	 * 	Код депо последнего деповского ремонта
 	 */
-	@Column(name = "KD_DEPREMD")
+	@Column(name = "KOD_DEPO_REMONT")
 	private String kodDepoPoslRemonta;
 	
 	/** 
 	 * 	№ Проекта модернизации 1
 	 */
-	@Column(name = "NPROMOD1")
+	@Column(name = "NUM_PROEKT_MODERNIZ1")
 	private String nomerModernizacii1;
 	
 	/** 
 	 * 	№ Проекта модернизации 2
 	 */
-	@Column(name = "NPROMOD2")
+	@Column(name = "NUM_PROEKT_MODERNIZ2")
 	private String nomerModernizacii2;
 	
 	/** 
 	 * 	№ Проекта модернизации 3
 	 */
-	@Column(name = "NPROMOD3")
+	@Column(name = "NUM_PROEKT_MODERNIZ3")
 	private String nomerModernizacii3;
 	
 	/** 
 	 * 	№ Проекта модернизации 4
 	 */
-	@Column(name = "NPROMOD4")
+	@Column(name = "NUM_PROEKT_MODERNIZ4")
 	private String nomerModernizacii4;
 	
 	/** 
 	 * 	№ Проекта модернизации 5
 	 */
-	@Column(name = "NPROMOD5")
+	@Column(name = "NUM_PROEKT_MODERNIZ5")
 	private String nomerModernizacii5;
 	
 	/** 
 	 * 	№ Проекта модернизации 6
 	 */
-	@Column(name = "NPROMOD6")
+	@Column(name = "NUM_PROEKT_MODERNIZ6")
 	private String nomerModernizacii6;
 	
 	/** 
 	 * 	№ Проекта модернизации 7
 	 */
-	@Column(name = "NPROMOD7")
+	@Column(name = "NUM_PROEKT_MODERNIZ7")
 	private String nomerModernizacii7;
 	
 	/** 
 	 * 	№ Проекта модернизации 8
 	 */
-	@Column(name = "NPROMOD8")
+	@Column(name = "NUM_PROEKT_MODERNIZ8")
 	private String nomerModernizacii8;
 	
 	/** 
 	 * 	№ Проекта модернизации 9
 	 */
-	@Column(name = "NPROMOD9")
+	@Column(name = "NUM_PROEKT_MODERNIZ9")
 	private String nomerModernizacii9;
 	
 	/** 
 	 * 	№ Проекта модернизации 10
 	 */
-	@Column(name = "NPROMOD10")
+	@Column(name = "NUM_PROEKT_MODERNIZ10")
 	private String nomerModernizacii10;
 	
 	/** 
 	 * 	Старый номер вагона
 	 */
-	@Column(name = "STNV")
+	@Column(name = "OLD_NV")
 	private String nomerWagonaStarij;
 	
 	/** 
 	 * 	Причина перенумерования
 	 */
 	@Max(value=1)
-	@Column(name = "KD_PRIPEREN")
+	@Column(name = "PRICHINA_PERENUMER")
 	private String kodPerenumerovania;
 	
 	/** 
 	 * 	Дата изъятия вагона из Единого парка
 	 */
-	@Column(name = "D_IZEDP")
+	@Column(name = "DATA_IZYATIYA_EDINYI_PARK")
 	private Calendar dataIzjatiaIzEdinogoParka;
+	
+	/** 
+	 * 	Код организации-собственницы
+	 */
+	@Column(name = "KOD_SOBSTV")
+	private String kodSobstv;
 	
 	/** 
 	 * 	Код организации-арендатора вагона
 	 */
-	@Column(name = "K_AREND")
+	@Column(name = "KOD_ARENDATOR")
 	private String kodArendatoraWagona;
 	
 	/** 
 	 * 	Станция приписки арендованного вагона
 	 */
-	@Column(name = "STPRIPAREND")
+	@Column(name = "ST_PRIPISKI_AREND_VG")
 	private String stanciaPripiskiArendnogoWagona;
 	
 	/** 
 	 * 	Срок аренды
 	 */
-	@Column(name = "SROKAREND")
+	@Column(name = "SROK_ARENDY")
 	private Calendar dataOkonchaniiArendi;
 	
 	/**
 	 	Род перевозимого груза
 	 */
-	@Column(name = "GRUZ")
+	@Column(name = "KOD_GRUZ")
 	private String opisanieGruza;
 	
 	/** 
 	 * 	Паспорт составленный на предприятии
 	 */
-	@Column(name = "PREDPR")
+	@Column(name = "PASPORT")
 	private String pasportSostNaPredprijatii;
 	
 	/** 
 	 * 	Условный код балансосодержателя
 	 */
-	@Column(name = "KD_BALANS")
+	@Column(name = "KOD_BALANS")
 	private String uslKodBalansa;
 	
 	/** 
 	 * 	Текущий вид собственности вагона
 	 */
 	@Max(value=1)
-	@Column(name = "VID_SOB_TEK")
+	@Column(name = "TEK_VID_SOBSTVENNOSTI")
 	private String vidSobstvWagonaTek;
 		
 	/** 
 	 * 	Первичный вид собственности вагона
 	 */
 	@Max(value=1)
-	@Column(name = "VID_SOB_PR")
+	@Column(name = "PERV_VID_SOBSTVENNOSTI")
 	private String vidSobstvWagonaPervichnij;
 	
 	/** 
 	 * 	Признак нахождения вагона в Едином парке
 	 */
 	@Max(value=1)
-	@Column(name = "PR_EDP")
+	@Column(name = "PR_EDINYI_PARK")
 	private String priznakNachozchdeniaWagonaVEdinomParke;
 	
 	/** 
 	 * 	Количество непрошедших переписей
 	 */
 	@Max(value=1)
-	@Column(name = "KOL_NETPER")
+	@Column(name = "KOL_NEPROSHED_PEREPIS")
 	private String kolNeproshedshichZapisej;
 
 	
@@ -630,28 +626,12 @@ public class UgvTechnicalDetails implements Serializable {
 		this.taraWagona = taraWagona;
 	}
 
-	public String getTaraWagonaPoTraforetu() {
-		return taraWagonaPoTraforetu;
-	}
-
-	public void setTaraWagonaPoTraforetu(String taraWagonaPoTraforetu) {
-		this.taraWagonaPoTraforetu = taraWagonaPoTraforetu;
-	}
-
 	public String getGruzopodjemnost() {
 		return gruzopodjemnost;
 	}
 
 	public void setGruzopodjemnost(String gruzopodjemnost) {
 		this.gruzopodjemnost = gruzopodjemnost;
-	}
-
-	public String getGruzopodjemnostPoTraforetu() {
-		return gruzopodjemnostPoTraforetu;
-	}
-
-	public void setGruzopodjemnostPoTraforetu(String gruzopodjemnostPoTraforetu) {
-		this.gruzopodjemnostPoTraforetu = gruzopodjemnostPoTraforetu;
 	}
 
 	public String getDlinaPoOsiamAvtocepok() {
