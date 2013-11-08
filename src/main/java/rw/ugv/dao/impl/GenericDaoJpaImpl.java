@@ -137,7 +137,9 @@ public class GenericDaoJpaImpl<T,PK extends Serializable> implements GenericDAO<
 		}
 //		query.select(rootFrom);
 		Predicate predicate = cb.or(predicates);
-		query.where(predicates);
+		if (filtersEntries.size() > 0) {
+			query.where(predicate).distinct(true);
+		}
 		if (fieldName != null) {
 			query = query.orderBy(ascending ? cb.asc(rootFrom.get(fieldName)) : cb.desc(rootFrom.get(fieldName)));
 		}
