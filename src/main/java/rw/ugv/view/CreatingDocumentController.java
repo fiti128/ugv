@@ -20,8 +20,16 @@ public class CreatingDocumentController {
 		return ugvDocument;
 	}
 	
-	public void addDocument() throws Exception {
-		documentDao.create(ugvDocument);
+	public void addDocument(UgvDocument document) throws Exception {
+        System.out.println("Creatring" + document);
+        UgvDocument newDocument = new UgvDocument();
+        newDocument.setDocumentNumber(document.getDocumentNumber());
+        newDocument.setId(document.getId());
+
+		documentDao.create(document.clone());
+	}
+	public void sayHi() {
+		System.out.println("Hi from creatingDocument");
 	}
 	
 	

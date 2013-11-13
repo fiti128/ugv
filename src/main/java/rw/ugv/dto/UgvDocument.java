@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="DOC", schema="UGV")
-public class UgvDocument implements Serializable {
+public class UgvDocument implements Serializable, Cloneable {
 	
 
 	public UgvDocument() {
@@ -104,7 +104,13 @@ public class UgvDocument implements Serializable {
 	public void setId(Date id) {
 		this.id = id;
 	}
-	public String getKodPrichiniDocumenta() {
+
+    @Override
+    public UgvDocument clone() throws CloneNotSupportedException {
+        return (UgvDocument)super.clone();
+    }
+
+    public String getKodPrichiniDocumenta() {
 		return kodPrichiniDocumenta;
 	}
 	public void setKodPrichiniDocumenta(String kodPrichiniDocumenta) {

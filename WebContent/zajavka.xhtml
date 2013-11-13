@@ -11,7 +11,7 @@ xmlns:p="http://primefaces.org/ui">
        <h:body>
        
        <ui:composition>
-	       <h:form id="formZajavka">  
+	       
 	          <div class="row-fluid">
 	          	<div class="span4">
 				        <h:graphicImage library="images" name="testimonial.png"/>
@@ -39,10 +39,10 @@ xmlns:p="http://primefaces.org/ui">
 	          			
 	          	<div class="pagination-right">
 	          			
-				        <p:commandButton id="buttonZajavka" value="Submit" />  
+				        <p:commandButton id="buttonZajavka" actionListener="#{creatingDocumentController.sayHi}" value="#{msgs.submit}" />  
 	          	</div>
 	          </div>
-			</h:form> 
+			
        </ui:composition>
        
        

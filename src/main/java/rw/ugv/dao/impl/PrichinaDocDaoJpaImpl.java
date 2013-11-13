@@ -22,11 +22,7 @@ import java.util.Set;
 public class PrichinaDocDaoJpaImpl implements PrichinaDocDAO {
     @Inject
     private transient org.apache.log4j.Logger logger;
-    /**
-     *
-     */
-
-
+ 
     @Inject @UgvDatabase
     protected javax.persistence.EntityManager entityManager;
 

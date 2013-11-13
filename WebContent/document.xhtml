@@ -11,7 +11,7 @@ xmlns:p="http://primefaces.org/ui">
        <h:body>
        
        <ui:composition>
-	       <h:form id="form9">
+	       <div id="form9">
                <div class="row-fluid pagination-centered">
                     <h4>
 				        <h:outputFormat rendered="#{documentForm.kodOperacii}" value="#{documentForm.fullNameForm}"/>
@@ -23,12 +23,13 @@ xmlns:p="http://primefaces.org/ui">
 				        <h:graphicImage library="images" name="Text.png"/>
 	          	</div>
 	          	<div class="span8">
-				    <h:panelGrid id="panelGrid9" columns="2" cellpadding="5">  
+	          	
+				    <h:panelGrid id="pangelGrid9" columns="2" cellpadding="5">  
 
     		            <h:outputLabel id="formaDocumentaLabel" for="formaDocumenta" value="#{msgs.form}" /> 
        		            <p:selectOneMenu  id="formaDocumenta"  value="#{document.form}">
        		            	<f:selectItems value="#{documentForm.formList}"></f:selectItems>
-       		           		 <p:ajax update="form9"  
+       		           		 <p:ajax update="pangelGrid9"  
                         			listener="#{documentForm.handleFormChanged(document.form)}" /> 
        		            </p:selectOneMenu>  
        		            
@@ -38,8 +39,9 @@ xmlns:p="http://primefaces.org/ui">
        		            <h:outputLabel id="dataDocumentaLabel" for="dataDocumenta" value="#{msgs.documentDate}" rendered="#{documentForm.dataDocumenta}" /> 
        		            <p:calendar id="dataDocumenta" value="#{document.documentDate}" rendered="#{documentForm.dataDocumenta}" />  
        		            
-       		            <h:outputLabel id="kodPrichiniDocumentaLabel" for="kodPrichiniDocumenta" value="#{msgs.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  /> 
-       		            <p:selectOneMenu id="kodPrichiniDocumenta" value="#{document.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  >
+       		            <h:outputLabel id="kodPrichiniDocumentaLabel" for="kodPrichiniDocumenta" value="#{msgs.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"  />
+       		            <p:selectOneMenu id="kodPrichiniDocumenta" value="#{document.kodPrichiniDocumenta}" rendered="#{documentForm.kodPrichiniDocumenta}"
+       		              >
                             <f:selectItems value="#{documentForm.prichiniList}"></f:selectItems>
                         </p:selectOneMenu>
        		            
@@ -60,14 +62,14 @@ xmlns:p="http://primefaces.org/ui">
        		            <p:inputText id="kodOperacii" value="#{document.kodOperacii}" rendered="#{documentForm.kodOperacii}"  />
        		           
  				    </h:panelGrid>  
+ 				    
 	          	</div>
 	          			
 	          	<div class="pagination-right">
-	          			
-				        <p:commandButton id="button9" value="Ввести" action="#{creatingDocumentController.addDocument}" />  
+	          		 <p:commandButton id="button9" value="#{msgs.submit}" actionListener="#{documentDao.create(document.clone())}" />
 	          	</div>
 	          </div>
-			</h:form> 
+		</div>	
        </ui:composition>
        
        

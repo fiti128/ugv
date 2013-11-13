@@ -24,6 +24,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import rw.ugv.dao.StationsDAO;
 import rw.ugv.dto.SpFormDoc;
 import rw.ugv.dto.Stations;
+import rw.ugv.dto.UgvDocument;
 import rw.ugv.dto.UgvPrichinaDoc;
 import rw.ugv.qualifiers.FormKod;
 import rw.ugv.qualifiers.UgvForm;
@@ -35,19 +36,21 @@ public class DocumentForm implements Serializable {
 	@Inject
 	private StationsDAO stationsDao;
 	
+	
+	
 	@Inject @UgvForm
 	private List<UgvPrichinaDoc> prichinaDocList;
     @Inject @UgvForm
     private List<SpFormDoc> spFormDocList;
 	private static final long serialVersionUID = 1203352608230766258L;
-	private Map<String,Map<String,Boolean>> map = new HashMap<String,Map<String,Boolean>> ();
+	private Map<String, Map<String,Boolean>> map = new HashMap<String,Map<String,Boolean>> ();
 	private List<String> formList;
 	private List<String> prichiniList;
 	
 	@Column(name = "FORM")
 	private String form;
 	
-	
+	private String kodPrichini;
 	private String kodForm;
 	
 	@Produces @FormKod
@@ -157,6 +160,23 @@ public class DocumentForm implements Serializable {
 
         // Note we designate 1 as true and 0 as false though some may disagree
         return input == 1;
+    }
+
+    public String sayHello() {
+    	System.out.println("Hello");
+    	return "index";
+    }
+    public String sayHello(UgvDocument document) {
+    	System.out.println(document);
+    	return "";
+    }
+    	
+    public String getKodPrichini() {
+        return kodPrichini;
+    }
+
+    public void setKodPrichini(String kodPrichini) {
+        this.kodPrichini = kodPrichini;
     }
 
     public String getFullNameForm() {
